@@ -1,4 +1,9 @@
+.*
+!.gitignore
 etc/
 var/
 elpa/
 packages/
+auto-save-list/
+*.el
+
