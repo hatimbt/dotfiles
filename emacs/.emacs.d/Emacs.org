@@ -1,8 +1,6 @@
 #+title: Emacs From Scratch Configuration
 #+PROPERTY: header-args:emacs-lisp :tangle ./init.el :mkdirp yes
 
-* Welcome!
-
 * Startup Performance
 
 #+begin_src emacs-lisp
@@ -85,6 +83,12 @@ We use the [[https://github.com/emacscollective/no-littering/blob/master/no-litt
 
 #+end_src
 
+We make a custom.el file for the auto-generated code that stores some variables.
+
+#+begin_src emacs-lisp
+(setq custom-file "~/.emacs.d/custom.el")
+#+end_src
+
 * Basic UI Configuration
 
 This section configures basic UI settings that remove unneeded elements to make Emacs look a lot more minimal and modern.  If you're just getting started in Emacs, the menu bar might be helpful so you can remove the =(menu-bar-mode -1)= line if you'd like to still see that.
@@ -115,7 +119,6 @@ This section configures basic UI settings that remove unneeded elements to make 
     (add-hook mode (lambda () (display-line-numbers-mode 0))))
 
 #+end_src
-
 
 * Keybinding Configuration
 
@@ -316,7 +319,22 @@ This is an example of using [[https://github.com/abo-abo/hydra][Hydra]] to desig
 * Org Mode
 
 [[https://orgmode.org/][Org Mode]] is one of the hallmark features of Emacs.  It is a rich document editor, project planner, task and time tracker, blogging engine, and literate coding utility all wrapped up in one package.
-*** Center Org Buffers
+
+** Basic Config
+#+begin_src emacs-lisp
+
+  (use-package org)
+
+  (setq visual-line-mode t)
+
+  (with-eval-after-load 'org       
+    (setq org-startup-indented t) ; Enable `org-indent-mode' by default
+
+    (add-hook 'org-mode-hook #'visual-line-mode))
+
+#+end_src
+
+** Center Org Buffers
 
 We use [[https://github.com/joostkremers/visual-fill-column][visual-fill-column]] to center =org-mode= buffers for a more pleasing writing experience as it centers the contents of the buffer horizontally to seem more like you are editing a document.  This is really a matter of personal preference so you can remove the block below if you don't like the behavior.
 
@@ -383,6 +401,9 @@ This snippet adds a hook to =org-mode= buffers so that =efs/org-babel-tangle-con
   (add-hook 'org-mode-hook (lambda () (add-hook 'after-save-hook #'efs/org-babel-tangle-config)))
 
 #+end_src
+
+** ORB
+
 
 * Magit
 
