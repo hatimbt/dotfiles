@@ -3,7 +3,7 @@ set shell=/bin/bash
 let mapleader = "\<Space>"
 
 " Disable swapfiles
-"set noswapfile
+set noswapfile
 
 "set nocompatible
 "filetype off
@@ -36,6 +36,10 @@ Plug 'machakann/vim-highlightedyank'
 
 " Semantic language support
 Plug 'rust-lang/rust.vim'
+
+" Highlight and navigate matching text
+" Better paranthesis matching
+Plug 'andymass/vim-matchup'
 
 call plug#end()
 
@@ -192,3 +196,5 @@ nnoremap <silent> g] <cmd>lua vim.lsp.diagnostic.goto_next()<CR>
 
 set tabstop=4
 set shiftwidth=4
+
+hi MatchParen ctermbg=Black cterm=bold
