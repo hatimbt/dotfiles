@@ -5,11 +5,10 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-# Alias to start ssh-agent when X is started up
-alias startx='eval `ssh-agent` startx'
+source ~/dotfiles/bash/.bash_env
+source ~/dotfiles/bash/.bash_aliases
 
-alias ls='ls --color=auto'
-alias ll='ls -lah'
+source "$HOME/.cargo/env"
 
 PROMPT_COMMAND='smart-pwd'
 PS1='\u ❯ '
