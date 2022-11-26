@@ -11,5 +11,6 @@ fi
 source "$HOME/.cargo/env"
 
 alias ssh='/path/to/ssh-ident'
+alias ll='ls -lah'
 
 export SSH_AUTH_SOCK DEFAULT="$XDG_RUNTIME_DIR/ssh-agent.socket"

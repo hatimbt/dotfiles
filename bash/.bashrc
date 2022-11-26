@@ -9,8 +9,10 @@
 alias startx='eval `ssh-agent` startx'
 
 alias ls='ls --color=auto'
-PS1='[\u@\h \W]\$ '
-source "$HOME/.cargo/env"
+alias ll='ls -lah'
+
+PROMPT_COMMAND='smart-pwd'
+PS1='\u ❯ '
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
