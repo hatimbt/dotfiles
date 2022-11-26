@@ -37,9 +37,9 @@ Plug 'machakann/vim-highlightedyank'
 " Semantic language support
 Plug 'rust-lang/rust.vim'
 
-" Highlight and navigate matching text
-" Better paranthesis matching
-Plug 'andymass/vim-matchup'
+" Vim theme
+Plug 'casonadams/walh'
+
 
 call plug#end()
 
@@ -81,7 +81,6 @@ set diffopt+=iwhite	" No whitespace in vimdiff
 set colorcolumn=80	" Coloured column
 set showcmd		" Show (partial) command in status line
 set mouse=a		" Enable mouse usage (all modes) in terminals
-
 
 
 " =============================================================================
@@ -198,3 +197,20 @@ set tabstop=4
 set shiftwidth=4
 
 hi MatchParen ctermbg=Black cterm=bold
+
+source ~/.config/nvim/walh/colors/walh-nord.vim
+
+let g:lightline = {
+      \ 'component_function': {
+      \   'filename': 'LightlineFilename',
+      \ }
+      \ }
+
+function! LightlineFilename()
+  let root = fnamemodify(get(b:, 'git_dir'), ':h')
+  let path = expand('%:p')
+  if path[:len(root)-1] ==# root
+    return path[len(root)+1:]
+  endif
+  return expand('%')
+endfunction
