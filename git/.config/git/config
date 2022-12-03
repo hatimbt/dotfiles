@@ -1,0 +1,55 @@
+[include]
+	path = config.local
+
+[core]
+	editor = nvim
+[init]
+	defaultBranch = master
+[color]
+	ui = auto
+[alias]
+	a = add
+	aa = add --all
+	# af
+	# amend = commit --amend --verbose
+	ap = add -p
+	# apf
+	b = branch
+	c = commit --verbose
+	ca = commit --amend --verbose
+	co = checkout
+	cob = checkout -b
+	bco = checkout -b
+	# count
+	d = diff
+	dc = diff --word-diff --color-words
+
+	l = log --decorate --graph --oneline -20
+	ll = log --decorate --graph --oneline
+	rl = reflog -20
+	rll = reflog
+	la = log --all --decorate --graph --oneline
+
+	m = merge
+	mf = merge --ff-only
+	mn = merge --no-ff
+
+	p = push
+
+	pl = pull
+	r = reset
+	rh = reset --hard
+	
+	rb = rebase
+	rba = rebase --abort
+	rbc = rebase --continue
+	rbi = rebase -i
+
+	s = status -sb
+
+	incoming = log --all --decorate --graph --oneline origin/master ^master
+	outgoing = log --all --decorate --graph --oneline master ^origin/master
+
+	# Better semantics
+	unstage = reset
+	undo = revert

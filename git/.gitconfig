@@ -1,7 +1,0 @@
-[include]
-	path = .gitconfig.local
-
-[core]
-	editor = nvim
-[init]
-	defaultBranch = master

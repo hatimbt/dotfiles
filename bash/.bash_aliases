@@ -25,6 +25,7 @@ alias vv='v $(rg --files | fzf)'
 
 # Emacs
 alias e='emacs'
+alias vimdiff='nvim -d'
 
 # Alias to start ssh-agent when X is started up
 alias startx='eval `ssh-agent` startx'
@@ -38,3 +39,5 @@ alias ca='cargo'
 alias ea='v ~/dotfiles/bash/.bash_aliases'
 alias ee='v ~/dotfiles/bash/.bash_env'
 alias ev='v ~/.config/nvim/init.vim'
+alias eg='v ~/.config/git/config'
+
