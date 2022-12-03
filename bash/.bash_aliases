@@ -33,11 +33,16 @@ alias startx='eval `ssh-agent` startx'
 # Reload the shell
 alias rl='source ~/.bashrc'
 
-# Cargo
+# Rust and Cargo
+alias rup='rustup'
+alias ru='rustup update'
 alias ca='cargo'
+alias cu='cargo install --locked $(cargo install --list | egrep "^[a-z0-9_-]+ v[0-9.]+:$" | cut -f1 -d" ")'
+alias ci='cargo install --locked'
 
+alias eb='v ~/dotfiles/bash/.bashrc'
 alias ea='v ~/dotfiles/bash/.bash_aliases'
 alias ee='v ~/dotfiles/bash/.bash_env'
 alias ev='v ~/.config/nvim/init.vim'
 alias eg='v ~/.config/git/config'
-
+alias ep='v ~/.config/starship.toml'

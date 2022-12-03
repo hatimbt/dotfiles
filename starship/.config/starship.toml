@@ -19,7 +19,6 @@ truncation_length = 8
 truncate_to_repo = false
 
 [git_branch]
-always_show_remote = true
 format = "[$branch ]($style)[($remote_name/$remote_branch )](bold red)"
 
 [git_commit]
