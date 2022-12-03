@@ -3,53 +3,69 @@
 
 [core]
 	editor = nvim
-[init]
-	defaultBranch = master
-[color]
-	ui = auto
-[alias]
-	a = add
-	aa = add --all
-	# af
-	# amend = commit --amend --verbose
-	ap = add -p
-	# apf
-	b = branch
-	c = commit --verbose
-	ca = commit --amend --verbose
-	co = checkout
-	cob = checkout -b
-	bco = checkout -b
-	# count
-	d = diff
-	dc = diff --word-diff --color-words
 
+[init]
+	defaultBranch = main
+
+[diff]
+	# Use the extended form of Bram Cohen's 'patience' diff algorithm
+	algorithm = histogram
+
+[fetch]
+	prune = true
+
+[merge]
+	tool = vimdiff
+
+[rebase]
+	# Use --no-autostash to disable this
+	autoStash = true
+
+[alias]
+	# Logs
 	l = log --decorate --graph --oneline -20
 	ll = log --decorate --graph --oneline
 	rl = reflog -20
 	rll = reflog
 	la = log --all --decorate --graph --oneline
+	in = log --all --decorate --graph --oneline origin/master ^master
+	out = log --all --decorate --graph --oneline master ^origin/master
+	
+	# Diffs
+	d = diff
+	dc = diff --word-diff --color-words
 
+	# Staging/Unstaging files
+	a = add
+	aa = add --all
+	ap = add -p	
+	r = reset
+	rh = reset --hard
+	s = status -sb
+	unstage = reset
+	undo = revert
+
+	# Commit
+	c = commit --verbose
+	ca = commit --amend --verbose
+	amend = commit --amend --verbose
+
+	# Branches
+	b = branch
+	co = checkout
+	cob = checkout -b
+	
+	# Commit Merges
 	m = merge
 	mf = merge --ff-only
 	mn = merge --no-ff
 
-	p = push
-
-	pl = pull
-	r = reset
-	rh = reset --hard
-	
+	# Commit Rebase
 	rb = rebase
 	rba = rebase --abort
 	rbc = rebase --continue
 	rbi = rebase -i
 
-	s = status -sb
-
-	incoming = log --all --decorate --graph --oneline origin/master ^master
-	outgoing = log --all --decorate --graph --oneline master ^origin/master
-
-	# Better semantics
-	unstage = reset
-	undo = revert
+	# Remote management
+	ps = push
+	pl = pull
