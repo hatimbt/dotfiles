@@ -25,6 +25,7 @@
 	# Logs
 	l = log --decorate --graph --oneline -20
 	ll = log --decorate --graph --oneline
+	lr = log --reverse --decorate --oneline
 	rl = reflog -20
 	rll = reflog
 	la = log --all --decorate --graph --oneline

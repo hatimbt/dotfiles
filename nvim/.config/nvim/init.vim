@@ -23,19 +23,25 @@ Plug 'nvim-lua/completion-nvim'
 " VIM Enhancements
 Plug 'ciaranm/securemodelines'
 
-
 " GUI Enhancements
 Plug 'itchyny/lightline.vim'
+
 "Plug 'dense-analysis/ale'
 Plug 'machakann/vim-highlightedyank'
 
 " Fuzzy finder
+Plug 'lotabout/skim', { 'dir': '~/.skim', 'do': './install' }
+Plug 'lotabout/skim.vim'
+
 " Plug 'airblad/vim-rooter'
 " Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install -all' }
 " Plug 'junegunn/fzf/vim'
 
 " Semantic language support
 Plug 'rust-lang/rust.vim'
+
+" Inko Language support
+Plug 'https://gitlab.com/inko-lang/inko.vim.git'
 
 " Vim theme
 Plug 'casonadams/walh'
