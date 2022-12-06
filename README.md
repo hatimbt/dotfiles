@@ -10,3 +10,8 @@ To setup the config files for all packages, run:
 ```sh
 stow *
 ```
+
+To remove a package, run:
+```sh
+stow -D <package-name>
+```
