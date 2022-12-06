@@ -61,6 +61,8 @@ alias dj='cd ~/dev/major/'
 alias dn='cd ~/dev/minor/'
 
 # Git
+# gs is an executable hash for ghostcript, to run it, use `\gs` or `command gs`
+alias gs='git s'
 alias gd='git d'
 alias ga='git a'
 alias gaa='git aa'
