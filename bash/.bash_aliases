@@ -59,3 +59,13 @@ alias ve='v ~/.emacs.d'
 alias a='cd ~/km/'
 alias dj='cd ~/dev/major/'
 alias dn='cd ~/dev/minor/'
+
+# Git
+alias gd='git d'
+alias ga='git a'
+alias gaa='git aa'
+alias gap='git ap'
+alias gc='git c'
+alias gr='git r'
+alias gl='git l'
+alias gll='git ll'
