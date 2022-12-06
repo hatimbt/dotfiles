@@ -1,6 +1,8 @@
 # dotfiles
 These dotfiles are setup to be used with [GNU Stow](https://www.gnu.org/software/stow/).
 
+Clone the repo and run `stow` from within the `~/dotfiles` directory.
+
 To setup the config files for a given package, run the following:
 ```sh
 stow <package-name>
