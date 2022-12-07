@@ -1,5 +1,9 @@
-[include]
-	path = config.local
+[user]
+	name = Hatim Thayyil
+	email = hatim@thayyil.net
+
+[includeIf "gitdir:~/dev/work/**"]
+	path = ~/dev/work/.gitconfig
 
 [core]
 	editor = nvim
