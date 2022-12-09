@@ -13,8 +13,8 @@
 [[ $- != *i* ]] && return
 
 # Load shell env variables and aliases
-source ~/dotfiles/bash/.bash_env
-source ~/dotfiles/bash/.bash_aliases
+source ~/dotfiles/bash/bash_env
+source ~/dotfiles/bash/bash_aliases
 
 # Load cargo PATH variables for cargo installed binaries
 source "$HOME/.cargo/env"
