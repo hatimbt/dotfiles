@@ -1,12 +1,6 @@
-set shell=/bin/bash
+lua require('options')
+lua require('keymaps')
 
-let mapleader = "\<Space>"
-
-" Disable swapfiles
-set noswapfile
-
-"set nocompatible
-"filetype off
 call plug#begin()
 
 " Load plugins
@@ -46,65 +40,7 @@ Plug 'https://gitlab.com/inko-lang/inko.vim.git'
 " Vim theme
 Plug 'casonadams/walh'
 
-
 call plug#end()
-
-" Open hotkeys
-map <C-p> :Files<CR>
-map <leader>; :Buffers<CR>
-
-" Quick-save
-nmap <leader>w :w<CR>
-
-" Completion
-" Better display for messages
-set cmdheight=2
-
-" =============================================================================
-" Editor settings
-" =============================================================================
-set printfont=:h10
-
-" Sane splits
-set splitright
-set splitbelow
-
-" Permanent undo
-set undodir=~/.vimdid
-set undofile
-
-
-
-" =============================================================================
-" # GUI Settings
-" =============================================================================
-set guioptions-=T	" Remove toolbar
-set vb t_vb=		" Remove beeps
-set backspace=2		" Backspace over newlines
-set relativenumber	" Relative line numbers
-set number		" Also show current absolute line number
-set diffopt+=iwhite	" No whitespace in vimdiff
-set colorcolumn=80	" Coloured column
-set showcmd		" Show (partial) command in status line
-set mouse=a		" Enable mouse usage (all modes) in terminals
-
-
-" =============================================================================
-" Keyboard shortcuts
-" =============================================================================
-" ; as :
-nnoremap ; :
-
-" Jump to start and end of line using the home row keys
-map H ^
-map L $
-
-" Set updatetime for CursorHold
-" 300ms of no cursor movement to trigger CursorHold
-set updatetime=300
-
-set tabstop=4
-set shiftwidth=4
 
 hi MatchParen ctermbg=Black cterm=bold
 
