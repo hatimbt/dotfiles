@@ -48,20 +48,20 @@ alias cu='cargo install --locked $(cargo install --list | egrep "^[a-z0-9_-]+ v[
 alias ci='cargo install --locked'
 
 alias eb='v ~/dotfiles/bash/.bashrc'
-alias ea='v ~/dotfiles/bash/.bash_aliases'
-alias ev='v ~/.config/nvim/init.vim'
+alias ea='v ~/dotfiles/bash/aliases.bash'
+alias ev='v ~/.config/nvim/init.lua'
 alias eg='v ~/.config/git/config'
 alias ep='v ~/.config/starship.toml'
 alias ee='emacs ~/.emacs.d'
 alias ve='v ~/.emacs.d'
 
 # Shortcuts to locations
+alias ch='cd ~/'
+alias cdt='cd ~/dotfiles/'
 alias a='cd ~/km/'
 alias dj='cd ~/dev/major/'
 alias dn='cd ~/dev/minor/'
 alias dw='cd ~/dev/work/'
-alias ch='cd ~/'
-alias cdt='cd ~/dotfiles/'
 
 # Git
 # gs is an executable hash for ghostcript, to run it, use `\gs` or `command gs`
