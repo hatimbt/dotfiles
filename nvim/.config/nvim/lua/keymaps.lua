@@ -1,11 +1,11 @@
 -- Leader: <Space>
-vim.g.mapleader = [[ ]]
+vim.g.mapleader = ' '
 
 -- Enter the command mode by `;`
-vim.keymap.set('n', ';', ':', {remap = false})
+vim.keymap.set('n', ';', ':')
 
 -- Write the current buffer to disk
-vim.keymap.set('n', '<space>w', '<cmd>write<cr>', {desc = 'Save'})
+vim.keymap.set('n', '<Leader>w', '<cmd>write<cr>', {desc = 'Save'})
 
 -- Jump to start and end of the current line using 'H' and 'L' 
 vim.keymap.set({'n', 'v'}, 'H', '^', {desc = 'Jump to beginning of line'})

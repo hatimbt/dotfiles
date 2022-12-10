@@ -26,7 +26,7 @@ vim.bo.tabstop = 4
 vim.bo.shiftwidth = 4
 
 -- If the user is AFK for this time (ms), the swap file is written to disk and
--- a 'CursorHold' even is triggered
+-- a 'CursorHold' event is triggered
 vim.o.updatetime = 300
 
 -- Number of screen lines for the command-line
