@@ -21,3 +21,6 @@ source "$HOME/.cargo/env"
 
 # Run the starship prompt
 eval "$(starship init bash)"
+
+# Run `zoxide`
+eval "$(zoxide init bash)"
