@@ -13,9 +13,10 @@ end
 local packer_bootstrap = ensure_packer()
 
 return require('packer').startup(function(use)
-	use 'wbthomason/packer.nvim'
-	use 'casonadams/walh'
-	use 'nvim-lualine/lualine.nvim'
+	use 'wbthomason/packer.nvim' -- Package manager
+	use 'casonadams/walh' -- Theme
+	use 'nvim-lualine/lualine.nvim' -- Modeline
+	use 'neovim/nvim-lspconfig'
 
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins
