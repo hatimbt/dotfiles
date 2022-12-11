@@ -152,7 +152,6 @@ This configuration uses [[https://evil.readthedocs.io/en/latest/index.html][evil
 #+end_src
 
 * UI Configuration
-
 ** Command Log Mode
 
 [[https://github.com/lewang/command-log-mode][command-log-mode]] is useful for displaying a panel showing each key binding you use in a panel on the right side of the frame.  Great for live streams and screencasts!
@@ -312,8 +311,6 @@ This is an example of using [[https://github.com/abo-abo/hydra][Hydra]] to desig
   (setq visual-line-mode t)
 
   (with-eval-after-load 'org       
-    (setq org-startup-indented t) ; Enable `org-indent-mode' by default
-
     (add-hook 'org-mode-hook #'visual-line-mode))
 
 #+end_src
@@ -387,7 +384,6 @@ This snippet adds a hook to =org-mode= buffers so that =efs/org-babel-tangle-con
 #+end_src
 
 ** ORB
-
 
 * Magit
 

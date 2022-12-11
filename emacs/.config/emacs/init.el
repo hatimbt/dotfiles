@@ -200,8 +200,6 @@
 (setq visual-line-mode t)
 
 (with-eval-after-load 'org       
-  (setq org-startup-indented t) ; Enable `org-indent-mode' by default
-
   (add-hook 'org-mode-hook #'visual-line-mode))
 
 (defun efs/org-mode-visual-fill ()
