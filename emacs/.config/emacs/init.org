@@ -4,7 +4,6 @@
 * Startup Performance
 
 #+begin_src emacs-lisp
-
   ;; The default is 800 kilobytes.  Measured in bytes.
   (setq gc-cons-threshold (* 50 1000 1000))
 
@@ -16,7 +15,6 @@
              gcs-done))
 
   (add-hook 'emacs-startup-hook #'efs/display-startup-time)
-
 #+end_src
 
 * Package System Setup
@@ -24,7 +22,6 @@
 Emacs has a built in package manager but it doesn't make it easy to automatically install packages on a new system the first time you pull down your configuration.  [[https://github.com/jwiegley/use-package][use-package]] is a really helpful package used in this configuration to make it a lot easier to automate the installation and configuration of everything else we use.
 
 #+begin_src emacs-lisp
-
   (unless (featurep 'straight)
     ;; Bootstrap straight.el
     (defvar bootstrap-version)
@@ -45,7 +42,6 @@ Emacs has a built in package manager but it doesn't make it easy to automaticall
 
   ;; set `:straight t` by default when installing packages
   (setq straight-use-package-by-default t)
-
 #+end_src
 
 * Keep Folders Clean
@@ -53,7 +49,6 @@ Emacs has a built in package manager but it doesn't make it easy to automaticall
 We use the [[https://github.com/emacscollective/no-littering/blob/master/no-littering.el][no-littering]] package to keep folders where we edit files and the Emacs configuration folder clean!  It knows about a wide variety of variables for built in Emacs features as well as those from community packages so it can be much easier than finding and setting these variables yourself.
 
 #+begin_src emacs-lisp
-
   ;; NOTE: If you want to move everything out of the ~/.emacs.d folder
   ;; reliably, set `user-emacs-directory` before loading no-littering!
   ;(setq user-emacs-directory "~/.cache/emacs")
@@ -64,13 +59,12 @@ We use the [[https://github.com/emacscollective/no-littering/blob/master/no-litt
   ;; auto save files in the same path as it uses for sessions
   (setq auto-save-file-name-transforms
 	`((".*" ,(no-littering-expand-var-file-name "auto-save/") t)))
-  
 #+end_src
 
 We make a custom.el file for the auto-generated code that stores some variables.
 
 #+begin_src emacs-lisp
-(setq custom-file "~/.config/emacs/custom.el")
+  (setq custom-file "~/.config/emacs/custom.el")
 #+end_src
 
 * Basic UI Configuration
@@ -78,7 +72,6 @@ We make a custom.el file for the auto-generated code that stores some variables.
 This section configures basic UI settings that remove unneeded elements to make Emacs look a lot more minimal and modern.  If you're just getting started in Emacs, the menu bar might be helpful so you can remove the =(menu-bar-mode -1)= line if you'd like to still see that.
 
 #+begin_src emacs-lisp
-
   (setq inhibit-startup-message t)
 
   (scroll-bar-mode -1)        ; Disable visible scrollbar
@@ -101,7 +94,6 @@ This section configures basic UI settings that remove unneeded elements to make 
                   treemacs-mode-hook
                   eshell-mode-hook))
     (add-hook mode (lambda () (display-line-numbers-mode 0))))
-
 #+end_src
 
 * Keybinding Configuration
@@ -109,7 +101,6 @@ This section configures basic UI settings that remove unneeded elements to make 
 This configuration uses [[https://evil.readthedocs.io/en/latest/index.html][evil-mode]] for a Vi-like modal editing experience.  [[https://github.com/noctuid/general.el][general.el]] is used for easy keybinding configuration that integrates well with which-key.  [[https://github.com/emacs-evil/evil-collection][evil-collection]] is used to automatically configure various Emacs modes with Vi-like keybindings for evil-mode.
 
 #+begin_src emacs-lisp
-
   ;; Make ESC quit prompts
   (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
 
@@ -148,7 +139,6 @@ This configuration uses [[https://evil.readthedocs.io/en/latest/index.html][evil
     :after evil
     :config
     (evil-collection-init))
-
 #+end_src
 
 * UI Configuration
@@ -157,16 +147,13 @@ This configuration uses [[https://evil.readthedocs.io/en/latest/index.html][evil
 [[https://github.com/lewang/command-log-mode][command-log-mode]] is useful for displaying a panel showing each key binding you use in a panel on the right side of the frame.  Great for live streams and screencasts!
 
 #+begin_src emacs-lisp
-
   (use-package command-log-mode
     :commands command-log-mode)
-
 #+end_src
 
 ** Color Theme
 
 #+begin_src emacs-lisp
-
   (use-package modus-themes
     :ensure
     :init
@@ -181,7 +168,6 @@ This configuration uses [[https://evil.readthedocs.io/en/latest/index.html][evil
     ;; Load the theme of your choice:
     (modus-themes-load-operandi) ;; OR (modus-themes-load-vivendi)
     :bind ("<f5>" . modus-themes-toggle))
-
 #+end_src
 
 ** Which Key
@@ -189,14 +175,12 @@ This configuration uses [[https://evil.readthedocs.io/en/latest/index.html][evil
 [[https://github.com/justbur/emacs-which-key][which-key]] is a useful UI panel that appears when you start pressing any key binding in Emacs to offer you all possible completions for the prefix.  For example, if you press =C-c= (hold control and press the letter =c=), a panel will appear at the bottom of the frame displaying all of the bindings under that prefix and which command they run.  This is very useful for learning the possible key bindings in the mode of your current buffer.
 
 #+begin_src emacs-lisp
-
   (use-package which-key
     :defer 0
     :diminish which-key-mode
     :config
     (which-key-mode)
     (setq which-key-idle-delay 1))
-
 #+end_src
 
 ** Ivy and Counsel
@@ -206,7 +190,6 @@ This configuration uses [[https://evil.readthedocs.io/en/latest/index.html][evil
 [[https://github.com/Yevgnen/ivy-rich][ivy-rich]] adds extra columns to a few of the Counsel commands to provide more information about each item.
 
 #+begin_src emacs-lisp
-
   (use-package ivy
     :diminish
     :bind (("C-s" . swiper)
@@ -238,7 +221,6 @@ This configuration uses [[https://evil.readthedocs.io/en/latest/index.html][evil
     (counsel-linux-app-format-function #'counsel-linux-app-format-function-name-only)
     :config
     (counsel-mode 1))
-
 #+end_src
 
 *** Improved Candidate Sorting with prescient.el
@@ -248,7 +230,6 @@ prescient.el provides some helpful behavior for sorting Ivy completion candidate
 This Prescient configuration is optimized for use in System Crafters videos and streams, check out the [[https://youtu.be/T9kygXveEz0][video on prescient.el]] for more details on how to configure it!
 
 #+begin_src emacs-lisp
-
   (use-package ivy-prescient
     :after counsel
     :custom
@@ -257,7 +238,6 @@ This Prescient configuration is optimized for use in System Crafters videos and 
     ;; Uncomment the following line to have sorting remembered across sessions!
     ;(prescient-persist-mode 1)
     (ivy-prescient-mode 1))
-
 #+end_src
 
 ** Helpful Help Commands
@@ -265,7 +245,6 @@ This Prescient configuration is optimized for use in System Crafters videos and 
 [[https://github.com/Wilfred/helpful][Helpful]] adds a lot of very helpful (get it?) information to Emacs' =describe-= command buffers.  For example, if you use =describe-function=, you will not only get the documentation about the function, you will also see the source code of the function and where it gets used in other places in the Emacs configuration.  It is very useful for figuring out how things work in Emacs.
 
 #+begin_src emacs-lisp
-
   (use-package helpful
     :commands (helpful-callable helpful-variable helpful-command helpful-key)
     :custom
@@ -276,7 +255,6 @@ This Prescient configuration is optimized for use in System Crafters videos and 
     ([remap describe-command] . helpful-command)
     ([remap describe-variable] . counsel-describe-variable)
     ([remap describe-key] . helpful-key))
-
 #+end_src
 
 ** Text Scaling
@@ -284,7 +262,6 @@ This Prescient configuration is optimized for use in System Crafters videos and 
 This is an example of using [[https://github.com/abo-abo/hydra][Hydra]] to design a transient key binding for quickly adjusting the scale of the text on screen.  We define a hydra that is bound to =C-s t s= and, once activated, =j= and =k= increase and decrease the text scale.  You can press any other key (or =f= specifically) to exit the transient key map.
 
 #+begin_src emacs-lisp
-
   (use-package hydra
     :defer t)
 
@@ -296,7 +273,6 @@ This is an example of using [[https://github.com/abo-abo/hydra][Hydra]] to desig
 
   (efs/leader-keys
     "ts" '(hydra-text-scale/body :which-key "scale text"))
-
 #+end_src
 
 * Org Mode
@@ -305,14 +281,12 @@ This is an example of using [[https://github.com/abo-abo/hydra][Hydra]] to desig
 
 ** Basic Config
 #+begin_src emacs-lisp
-
   (use-package org)
 
   (setq visual-line-mode t)
 
   (with-eval-after-load 'org       
     (add-hook 'org-mode-hook #'visual-line-mode))
-
 #+end_src
 
 ** Center Org Buffers
@@ -320,7 +294,6 @@ This is an example of using [[https://github.com/abo-abo/hydra][Hydra]] to desig
 We use [[https://github.com/joostkremers/visual-fill-column][visual-fill-column]] to center =org-mode= buffers for a more pleasing writing experience as it centers the contents of the buffer horizontally to seem more like you are editing a document.  This is really a matter of personal preference so you can remove the block below if you don't like the behavior.
 
 #+begin_src emacs-lisp
-
   (defun efs/org-mode-visual-fill ()
     (setq visual-fill-column-width 100
           visual-fill-column-center-text t)
@@ -328,7 +301,6 @@ We use [[https://github.com/joostkremers/visual-fill-column][visual-fill-column]
 
   (use-package visual-fill-column
     :hook (org-mode . efs/org-mode-visual-fill))
-
 #+end_src
 
 ** Configure Babel Languages
@@ -336,7 +308,6 @@ We use [[https://github.com/joostkremers/visual-fill-column][visual-fill-column]
 To execute or export code in =org-mode= code blocks, you'll need to set up =org-babel-load-languages= for each language you'd like to use.  [[https://orgmode.org/worg/org-contrib/babel/languages.html][This page]] documents all of the languages that you can use with =org-babel=.
 
 #+begin_src emacs-lisp
-
   (with-eval-after-load 'org
     (org-babel-do-load-languages
         'org-babel-load-languages
@@ -344,7 +315,6 @@ To execute or export code in =org-mode= code blocks, you'll need to set up =org-
         (python . t)))
 
     (push '("conf-unix" . conf-unix) org-src-lang-modes))
-
 #+end_src
 
 ** Structure Templates
@@ -354,7 +324,6 @@ Org Mode's [[https://orgmode.org/manual/Structure-Templates.html][structure temp
 You can add more =src= block templates below by copying one of the lines and changing the two strings at the end, the first to be the template name and the second to contain the name of the language [[https://orgmode.org/worg/org-contrib/babel/languages.html][as it is known by Org Babel]].
 
 #+begin_src emacs-lisp
-
   (with-eval-after-load 'org
     ;; This is needed as of Org 9.2
     (require 'org-tempo)
@@ -362,7 +331,6 @@ You can add more =src= block templates below by copying one of the lines and cha
     (add-to-list 'org-structure-template-alist '("sh" . "src shell"))
     (add-to-list 'org-structure-template-alist '("el" . "src emacs-lisp"))
     (add-to-list 'org-structure-template-alist '("py" . "src python")))
-
 #+end_src
 
 ** Auto-tangle Configuration Files
@@ -370,7 +338,6 @@ You can add more =src= block templates below by copying one of the lines and cha
 This snippet adds a hook to =org-mode= buffers so that =efs/org-babel-tangle-config= gets executed each time such a buffer gets saved.  This function checks to see if the file being saved is the Emacs.org file you're looking at right now, and if so, automatically exports the configuration here to the associated output files.
 
 #+begin_src emacs-lisp
-
   ;; Automatically tangle our Emacs.org config file when we save it
   (defun efs/org-babel-tangle-config ()
     (when (string-equal (file-name-directory (buffer-file-name))
@@ -380,7 +347,6 @@ This snippet adds a hook to =org-mode= buffers so that =efs/org-babel-tangle-con
         (org-babel-tangle))))
 
   (add-hook 'org-mode-hook (lambda () (add-hook 'after-save-hook #'efs/org-babel-tangle-config)))
-
 #+end_src
 
 ** Org-roam
@@ -394,6 +360,7 @@ This snippet adds a hook to =org-mode= buffers so that =efs/org-babel-tangle-con
     :config
     (org-roam-setup))
 #+end_src
+
 ** ORB
 
 * Magit
@@ -401,7 +368,6 @@ This snippet adds a hook to =org-mode= buffers so that =efs/org-babel-tangle-con
 [[https://magit.vc/][Magit]] is the best Git interface I've ever used.  Common Git operations are easy to execute quickly using Magit's command panel system.
 
 #+begin_src emacs-lisp
-
   (use-package magit
     :commands magit-status
     :custom
@@ -412,7 +378,6 @@ This snippet adds a hook to =org-mode= buffers so that =efs/org-babel-tangle-con
   ;; - https://magit.vc/manual/ghub/Getting-Started.html#Getting-Started
   (use-package forge
     :after magit)
-
 #+end_src
 
 * Runtime Performance
@@ -420,8 +385,6 @@ This snippet adds a hook to =org-mode= buffers so that =efs/org-babel-tangle-con
 Dial the GC threshold back down so that garbage collection happens more frequently but in less time.
 
 #+begin_src emacs-lisp
-
   ;; Make gc pauses faster by decreasing the threshold.
   (setq gc-cons-threshold (* 2 1000 1000))
-
 #+end_src
