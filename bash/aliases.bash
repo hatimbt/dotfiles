@@ -65,6 +65,7 @@ alias dw='cd ~/dev/work/'
 
 # Git
 # gs is an executable hash for ghostcript, to run it, use `\gs` or `command gs`
+alias g='git'
 alias gs='git s'
 alias gd='git d'
 alias ga='git a'
