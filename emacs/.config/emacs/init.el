@@ -42,7 +42,7 @@
 (setq auto-save-file-name-transforms
       `((".*" ,(no-littering-expand-var-file-name "auto-save/") t)))
 
-(setq custom-file "~/.emacs.d/custom.el")
+(setq custom-file "~/.config/emacs/custom.el")
 
 (setq inhibit-startup-message t)
 
@@ -238,7 +238,7 @@
 
 (use-package org-roam
   :custom
-  (org-roam-directory "~/km/org")
+  (org-roam-directory "~/km/org/roam")
   :bind (("C-c n l" . org-roam-buffer-toggle)
 	 ("C-c n f" . org-roam-node-find)
 	 ("C-c n i" . org-roam-node-insert))
