@@ -62,6 +62,7 @@
 	b = branch
 	co = checkout
 	cob = checkout -b
+	cp = checkout -p
 	
 	# Commit Merges
 	m = merge
