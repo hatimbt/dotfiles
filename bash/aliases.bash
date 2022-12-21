@@ -3,7 +3,8 @@ alias ..='cd ..'
 alias c='clear'
 
 # ls replacement 'exa'
-alias l='ll --sort=name --git'
+alias l='lx --sort=name --git --long --header'
+alias ll='l --all --time-style=long-iso'
 alias lg='l --grid'
 alias lm='ll --sort=time'
 alias lmg='lm --grid'
@@ -11,7 +12,6 @@ alias lf='ll --sort=size'
 alias lfg='lf --grid'
 alias le='ll --sort=ext'
 alias leg='le --grid'
-alias ll='lx --all --long --header --time-style=long-iso'
 alias lx='exa'
 
 # Create parent directories automatically
