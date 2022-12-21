@@ -17,5 +17,4 @@ source "$HOME/.bashrc"
 source "$HOME/.cargo/env"
 
 # SSH
-alias ssh='/path/to/ssh-ident'
 export SSH_AUTH_SOCK DEFAULT="$XDG_RUNTIME_DIR/ssh-agent.socket"
