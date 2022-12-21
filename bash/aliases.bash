@@ -56,9 +56,10 @@ alias ee='emacs ~/.emacs.d'
 alias ve='v ~/.emacs.d'
 
 # Shortcuts to locations
-alias ch='cd ~/'
-alias cdt='cd ~/dotfiles/'
+alias h='cd ~/'
 alias a='cd ~/km/'
+alias s='cd ~/org/'
+alias d='cd ~/dotfiles/'
 alias dj='cd ~/dev/major/'
 alias dn='cd ~/dev/minor/'
 alias dw='cd ~/dev/work/'
