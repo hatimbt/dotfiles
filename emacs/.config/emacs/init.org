@@ -143,6 +143,8 @@ This configuration uses [[https://evil.readthedocs.io/en/latest/index.html][evil
 
 ** Color Theme
 
+Enter "<f5>" to toggle between the dark and light modes of `modus-themes`.
+
 #+begin_src emacs-lisp
   (use-package modus-themes
     :ensure
