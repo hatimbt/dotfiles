@@ -327,6 +327,12 @@ This snippet adds a hook to =org-mode= buffers so that =efs/org-babel-tangle-con
   (add-hook 'org-mode-hook (lambda () (add-hook 'after-save-hook #'efs/org-babel-tangle-config)))
 #+end_src
 
+** Org-capture
+
+#+begin_src emacs-lisp
+ (setq org-default-notes-file (concat org-directory "/inbox.org")) 
+#+end_src
+
 ** Org-roam
 #+begin_src emacs-lisp
   (use-package org-roam
