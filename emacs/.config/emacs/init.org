@@ -25,7 +25,7 @@ Display the time taken to load emacs.
 
 * Package System Setup
 
-Emacs has a built in package manager but it doesn't make it easy to automatically install packages on a new system the first time you pull down your configuration. I am using [[https://github.com/radian-software/straight.el][=straight.el=]] for package management. Refer to this [[https://jeffkreeftmeijer.com/emacs-straight-use-package/][article]] for a tutorial on how to setup straight. Compared to =package.el=, straight.el only loads packages that are referenced in =init.el=.
+Emacs has a built in package manager but it doesn't make it easy to automatically install packages on a new system the first time you pull down your configuration. I am using [[https://github.com/radian-software/straight.el][straight.el]] for package management. Refer to this [[https://jeffkreeftmeijer.com/emacs-straight-use-package/][article]] for a tutorial on how to setup straight. Compared to =package.el=, straight.el only loads packages that are referenced in =init.el=.
 
 #+begin_src emacs-lisp
   (unless (featurep 'straight)
