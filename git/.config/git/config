@@ -48,6 +48,7 @@
 	aa = add --all
 	ap = add -p	
 	r = reset
+	rp = reset -p
 	rh = reset --hard
 	s = status -sb
 	unstage = reset
@@ -62,7 +63,7 @@
 	b = branch
 	co = checkout
 	cob = checkout -b
-	cp = checkout -p
+	cp = checkout -p  # choose hunks from diff between index and working copy
 	
 	# Commit Merges
 	m = merge
