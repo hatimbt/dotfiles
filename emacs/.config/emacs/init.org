@@ -3,18 +3,24 @@
 
 * Startup Performance
 
+Lower the garabage collection threshold.
+
 #+begin_src emacs-lisp
   ;; The default is 800 kilobytes.  Measured in bytes.
   (setq gc-cons-threshold (* 50 1000 1000))
+#+end_src
 
-  (defun efs/display-startup-time ()
+Display the time taken to load emacs.
+
+#+begin_src emacs-lisp
+  (defun ht/display-startup-time ()
     (message "Emacs loaded in %s with %d garbage collections."
              (format "%.2f seconds"
                      (float-time
                        (time-subtract after-init-time before-init-time)))
              gcs-done))
 
-  (add-hook 'emacs-startup-hook #'efs/display-startup-time)
+  (add-hook 'emacs-startup-hook #'ht/display-startup-time)
 #+end_src
 
 * Package System Setup
