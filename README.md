@@ -22,3 +22,17 @@ To remove config files for all packages, run:
 ```sh
 stow -D *
 ```
+
+## Setup on Windows
+
+Currently the setup is manual on Windows, and is only supported for my work laptop. Clone this repository to the home directory in `C:\Users\<username>\`.
+
+To make a symbolic link on Windows for a file, run Command Prompt as an Administrator, and run the below command:
+```sh
+mklink <linked-location> <file-location>
+```
+
+To create a soft link for a directory, run the following command:
+```sh
+mklink /D <linked-location> <directory-location>
+```
