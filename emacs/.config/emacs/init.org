@@ -149,6 +149,16 @@ This configuration uses [[https://evil.readthedocs.io/en/latest/index.html][evil
 #+end_src
 
 * UI Configuration
+** Modeline
+
+Use [[https://github.com/tarsius/keycast][keycast]] to display the current command and its key/mouse binding.
+
+#+begin_src emacs-lisp
+(use-package keycast
+  :init
+  (keycast-mode-line-mode))
+#+end_src
+
 ** Command Log Mode
 
 [[https://github.com/lewang/command-log-mode][command-log-mode]] is useful for displaying a panel showing each key binding you use in a panel on the right side of the frame.  Great for live streams and screencasts!
