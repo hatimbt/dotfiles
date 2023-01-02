@@ -8,6 +8,9 @@ This `emacs` configuration uses literate programming to generate the config file
 M-x ^org-babel-tangle
 ```
 
+## Windows Setup
+To use Emacs on windows, `cd` into the home directory, and create a soft symbolic link with `.config\emacs` as the `<linked-location>` and `dotfiles\emacs\.config\emacs` as the target <directory-location>.
+
 ## Useful commands
 To add codeblocks to an `org` file, use: 
 ```<s TAB```
