@@ -25,6 +25,13 @@ Display the time taken to load emacs.
 
 * Package System Setup
 
+Set `user-emacs-directory` before loading any packages. Setting this early fixes a few bugs when running Emacs on Windows. To make sure this is run as early as possible, this configuration is set in the [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Early-Init-File.html][early init]] file.
+
+#+begin_src emacs-lisp :tangle early-init.el
+;; Set `user-emacs-directory` before loading any packages.
+(setq user-emacs-directory "~/.cache/emacs")
+#+end_src
+
 Emacs has a built in package manager but it doesn't make it easy to automatically install packages on a new system the first time you pull down your configuration. I am using [[https://github.com/radian-software/straight.el][straight.el]] for package management. Refer to this [[https://jeffkreeftmeijer.com/emacs-straight-use-package/][article]] for a tutorial on how to setup straight. Compared to =package.el=, straight.el only loads packages that are referenced in =init.el=.
 
 #+begin_src emacs-lisp
@@ -66,9 +73,6 @@ Install =use-package= and configure it to use =straight.el=.
 We use the [[https://github.com/emacscollective/no-littering/blob/master/no-littering.el][no-littering]] package to keep folders where we edit files and the Emacs configuration folder clean!  It knows about a wide variety of variables for built in Emacs features as well as those from community packages so it can be much easier than finding and setting these variables yourself.
 
 #+begin_src emacs-lisp
-;; Set `user-emacs-directory` before loading `no-littering` to make sure all files are kept out from `~/.emacs.d/`!
-(setq user-emacs-directory "~/.cache/emacs")
-
 (use-package no-littering)
 
 ;; no-littering doesn't set this by default so we must place
