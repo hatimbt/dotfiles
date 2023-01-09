@@ -16,5 +16,17 @@ source "$HOME/.bashrc"
 # Load cargo env variables
 source "$HOME/.cargo/env"
 
+# Guix locales
+# https://guix.gnu.org/manual/en/html_node/Application-Setup.html
+export GUIX_LOCPATH=$HOME/.guix-profile/lib/locale
+
+# Set up path to a Guix profile
+# https://guix.gnu.org/manual/en/html_node/Getting-Started.html
+GUIX_PROFILE="$HOME/.guix-profile"
+. "$GUIX_PROFILE/etc/profile"
+
+
+
+
 # SSH
 export SSH_AUTH_SOCK DEFAULT="$XDG_RUNTIME_DIR/ssh-agent.socket"
