@@ -422,6 +422,98 @@ You can add more =src= block templates below by copying one of the lines and cha
 (setq org-default-notes-file (concat org-directory "/inbox.org")) 
 #+end_src
 
+* PDF Viwer
+
+We use [[https://github.com/vedang/pdf-tools][pdf-tools]] as our PDF viewer.
+
+#+begin_src emacs-lisp
+(use-package pdf-tools)
+
+;; Enable pdf-tools
+(pdf-tools-install)
+#+end_src
+
+* LaTeX
+
+** AUCTeX
+
+This configures a TeX editing environment.
+
+#+begin_src emacs-lisp
+(use-package tex
+  :straight auctex)
+
+;; Document parsing
+(setq TeX-auto-save t)
+(setq TeX-parse-self t)
+
+;; Ask for the master .tex file, useful in multi-file documents
+(setq-default TeX-master nil)
+
+;; Add hook to turn on math-mode automatically
+(add-hook 'LaTeX-mode-hook 'LaTeX-math-mode)
+
+;; Compile documents to PDF by default
+(setq TeX-PDF-mode t)
+
+(custom-set-variables
+ '(TeX-view-program-selection
+   '(((output-dvi has-no-display-manager) "dvi2tty")
+     ((output-dvi style-pstricks) "dvips and gv")
+     (output-dvi "xdvi")
+     (output-pdf "PDF Tools")
+     (output-html "xdg-open"))))
+#+end_src
+
+We use [[https://github.com/jsinglet/latex-preview-pane][latex-preview-pane]]
+to preview LaTeX files directly in Emacs.
+
+#+begin_src emacs-lisp
+(use-package latex-preview-pane)
+
+;; Enable latex-preview-pane automatically upon startup.
+(latex-preview-pane-enable)
+#+end_src
+
+Remove annoying LaTeX fontification.
+#+begin_src emacs-lisp
+;; Remove large font sizes for sections.
+(setq font-latex-fontify-sectioning 'color)
+
+;; Remove fontification of math
+(setq font-latex-fontify-script nil)
+#+end_src
+
+** RefTeX
+
+We use [[https://www.gnu.org/software/auctex/reftex.html][RefTeX]] to handle references, labels and citations in a LaTeX
+document. RefTeX also provides easy commands to move around in the document.
+
+#+begin_src emacs-lisp
+;; Use RefTeX with AUCTeX
+(add-hook 'LaTeX-mode-hook 'turn-on-reftex)
+(setq reftex-plug-into-AUCTeX t)
+#+end_src
+
+Find bibliography files
+
+#+begin_src emacs-lisp
+;; So that RefTeX also recognizes \addbibresource. Note that you
+;; can't use $HOME in path for \addbibresource but that "~"
+;; works.
+(setq reftex-bibliography-commands '("bibliography" "nobibliography" "addbibresource"))
+#+end_src
+
+* Denote
+
+We use [[https://github.com/protesilaos/denote][denote]] for simple note taking and managing file-naming.
+
+#+begin_src emacs-lisp
+(use-package denote)
+
+(setq denote-directory (expand-file-name "~/Nextcloud/sync-seta/"))
+#+end_src
+
 * Magit
 
 [[https://magit.vc/][Magit]] is an interface to Git.
