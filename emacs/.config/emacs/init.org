@@ -357,6 +357,23 @@ This is an example of using [[https://github.com/abo-abo/hydra][Hydra]] to desig
   (add-hook 'org-mode-hook #'visual-line-mode))
 #+end_src
 
+** LaTeX Exports
+We can use org mode to write well type-set documents by exportingt to LaTeX.
+
+We add support to the =momoir= class by the following.
+#+begin_src emacs-lisp
+(with-eval-after-load 'org
+  (require 'ox-latex)
+  (add-to-list 'org-latex-classes
+	       '("memoir"
+		 "\\documentclass[11pt]{memoir}"
+		 ("\\part{%s}" . "\\part*{%s}")
+		 ("\\chapter{%s}" . "\\chapter*{%s}")
+		 ("\\section{%s}" . "\\section*{%s}")
+		 ("\\subsection{%s}" . "\\subsection*{%s}")
+		 ("\\subsubsection{%s}" . "\\subsubsection*{%s}"))))
+#+end_src
+
 ** Working with source code (org-src)
 
 Org can manage source code blocks inside an Org document. More details are provided in [[https://orgmode.org/manual/Working-with-Source-Code.html][Working with Source Code]].
