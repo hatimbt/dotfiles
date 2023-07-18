@@ -105,7 +105,9 @@ This section configures basic UI settings that remove unneeded elements to make 
 (setq visible-bell t)
 
 (column-number-mode)
-(global-display-line-numbers-mode t)
+(setq-default fill-column 79)
+;;(global-display-line-numbers-mode t)
+(add-hook 'prog-mode-hook 'display-line-numbers-mode)
 #+end_src
 
 * Keybinding Configuration
