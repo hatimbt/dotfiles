@@ -54,13 +54,11 @@
   ;; Below is the list of system services.  To search for available
   ;; services, run 'guix system search KEYWORD' in a terminal.
   (services
-   (append (list (service network-manager-service-type)
-                 (service wpa-supplicant-service-type)
-                 (service ntp-service-type))
+   (append
 
            ;; This is the default list of services we
            ;; are appending to.
-           %base-services))
+           %desktop-services))
   
   (bootloader (bootloader-configuration
                 (bootloader grub-efi-bootloader)
