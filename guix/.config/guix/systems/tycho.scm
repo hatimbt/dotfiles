@@ -18,6 +18,8 @@
 (use-modules (gnu packages package-management))
 (use-modules (gnu packages suckless))
 (use-modules (gnu packages vim))
+(use-modules (gnu packages terminals))
+(use-modules (gnu packages web-browsers))
 
 (operating-system
 
@@ -48,6 +50,8 @@
                       stow
                       dwm
                       dmenu
+                      alacritty
+                      qutebrowser
                       neovim)
                     %base-packages))
 
