@@ -4,16 +4,48 @@
 ;; need to capture the channels being used, as returned by "guix describe".
 ;; See the "Replicating Guix" section in the manual.
 
-(use-modules (gnu home)
-             (gnu packages)
-             (gnu services)
-             (guix gexp)
-             (gnu home services shells))
+(use-modules (gnu home))
+(use-modules (gnu packages))
+(use-modules (gnu services))
+
+;; 'home-bash-service-type'
+(use-modules (gnu home services shells))
+
+;; To use 'local-file'
+(use-modules (guix gexp))
+
+;; 'htop'
+(use-modules (gnu packages admin))
+
+;; 'st'
+(use-modules (gnu packages suckless))
+
+;; 'alacritty'
+(use-modules (gnu packages terminals))
+
+;; 'exa'
+(use-modules (gnu packages rust-apps))
+
+;; 'tmux'
+(use-modules (gnu packages tmux))
+
+;; 'ungoogled-chromium'
+(use-modules (gnu packages chromium))
+
+;; 'vscodium'
+(use-modules (nongnu packages editors))
 
 (home-environment
   ;; Below is the list of packages that will show up in your
   ;; Home profile, under ~/.guix-home/profile.
-  (packages (specifications->packages (list)))
+  (packages (list
+	      htop
+	      tmux
+	      st
+	      alacritty
+	      exa
+	      ungoogled-chromium
+	      vscodium))
 
   ;; Below is the list of Home services.  To search for available
   ;; services, run 'guix home search KEYWORD' in a terminal.
