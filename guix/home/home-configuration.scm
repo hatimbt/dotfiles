@@ -126,7 +126,8 @@
 	  (service home-ssh-agent-service-type)
 
 	  (service home-xdg-configuration-files-service-type
-		   `(("git/config" ,(local-file "../files/git/config"))))
+		   `(("git/config", (local-file "../files/git/config"))
+		     ("tmux/tmux.conf", (local-file "../files/tmux.conf"))))
 
 	  ;; Install and configure dwl-guile wayland compositor
 	  ;; by engstrand.
