@@ -67,7 +67,7 @@
 					       %default-substitute-urls))
 				     (authorized-keys
 				       (append (list
-						 (local-file "../nonguix-signing-key.pub"))
+						 (local-file "../files/nonguix-signing-key.pub"))
 					       %default-authorized-guix-keys))))
 		(delete login-service-type)
 		;; TODO: Multiple removes are necessary right now due to a bug in
