@@ -10,6 +10,7 @@
 
 (use-modules (gnu home services))
 (use-modules (gnu home services shells))
+(use-modules (gnu home services ssh))
 
 ;; To use 'local-file'
 (use-modules (guix gexp))
@@ -87,6 +88,8 @@
   ;; Home profile, under ~/.guix-home/profile.
   (packages (map specification->package
 		 '("git"
+		   "openssh"
+
 		   "htop"
 		   "tmux"
 
@@ -115,6 +118,12 @@
 		     (bash-profile (list (local-file
 					   "../files/profile.bash"
 					   "bash_profile")))))
+
+	  ;; Requires the `openssh` package
+	  (service home-openssh-service-type
+		   (home-openssh-configuration
+		     (add-keys-to-agent "ask")))
+	  (service home-ssh-agent-service-type)
 
 	  (service home-xdg-configuration-files-service-type
 		   `(("git/config" ,(local-file "../files/git/config"))))
