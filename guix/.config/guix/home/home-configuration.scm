@@ -55,8 +55,8 @@
                    (aliases '(("grep" . "grep --color=auto") ("ll" . "ls -l")
                               ("ls" . "ls -p --color=auto")))
                    (bashrc (list (local-file
-                                  "/home/hatim/dotfiles/guix/.config/guix/home/.bashrc"
+                                  "../files/rc.bash"
                                   "bashrc")))
                    (bash-profile (list (local-file
-                                        "/home/hatim/dotfiles/guix/.config/guix/home/.bash_profile"
+                                        "../files/profile.bash"
                                         "bash_profile"))))))))
