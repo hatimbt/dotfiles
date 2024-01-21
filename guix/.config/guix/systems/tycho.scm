@@ -17,6 +17,7 @@
 (use-modules (gnu packages version-control))
 (use-modules (gnu packages package-management))
 (use-modules (gnu packages suckless))
+(use-modules (gnu packages wm))
 (use-modules (gnu packages vim))
 (use-modules (gnu packages terminals))
 (use-modules (gnu packages web-browsers))
@@ -34,56 +35,93 @@
 
   ;; The list of user accounts ('root' is implicit).
   (users (cons* (user-account
-                  (name "hatim")
-                  (comment "Hatim")
-                  (group "users")
-                  (home-directory "/home/hatim")
-                  (supplementary-groups '("wheel" "netdev" "audio" "video")))
-                %base-user-accounts))
+		  (name "hatim")
+		  (comment "Hatim")
+		  (group "users")
+		  (home-directory "/home/hatim")
+		  (supplementary-groups '("wheel"
+					  "netdev"
+					  "audio"
+					  "video")))
+		%base-user-accounts))
 
   ;; Packages installed system-wide.  Users can also install packages
   ;; under their own account: use 'guix search KEYWORD' to search
   ;; for packages and 'guix install PACKAGE' to install a package.
   (packages (append (list
-                      nss-certs
-                      git
-                      stow
-                      dwm
-                      dmenu
-                      alacritty
-                      qutebrowser
-                      neovim)
-                    %base-packages))
+		      nss-certs
+		      git)
+		    %base-packages))
 
   ;; Below is the list of system services.  To search for available
   ;; services, run 'guix system search KEYWORD' in a terminal.
-  (services
-   (append
+  (services (append
+	      (modify-services
+		%desktop-services
+		(guix-service-type config =>
+				   (guix-configuration
+				     (inherit config)
+				     (substitute-urls
+				       (append (list
+						 "https://substitutes.nonguix.org")
+					       %default-substitute-urls))
+				     (authorized-keys
+				       (append (list
+						 (local-file "../nonguix-signing-key.pub"))
+					       %default-authorized-guix-keys))))
+		(delete login-service-type)
+		;; TODO: Multiple removes are necessary right now due to a bug in
+		;; `modify-services`
+		(delete mingetty-service-type)
+		(delete gdm-service-type)
+		(delete console-font-service-type))
 
-           ;; This is the default list of services we
-           ;; are appending to.
-           %desktop-services))
+	      (list
+		(service screen-locker-service-type
+			 (screen-locker-configuration
+			   (name "swaylock")
+			   (program (file-append swaylock "/bin/swaylock"))
+			   (using-setuid? #f)
+			   (using-pam? #t)))
+
+		(service greetd-service-type
+			 (greetd-configuration
+			   ;; (greeter-supplementary-groups (list "video" "input"))
+			   (terminals
+			     (list
+			       ;; TTY1 is the graphical login screen for Sway
+			       (greetd-terminal-configuration
+				 (terminal-vt "1")
+				 (terminal-switch #t))
+
+			       ;; Set up remaining TTYs for terminal use
+			       (greetd-terminal-configuration (terminal-vt "2"))
+			       (greetd-terminal-configuration (terminal-vt "3"))
+			       (greetd-terminal-configuration (terminal-vt "4"))
+			       (greetd-terminal-configuration (terminal-vt "5"))
+			       (greetd-terminal-configuration (terminal-vt "6")))))))))
+
   
   (bootloader (bootloader-configuration
-                (bootloader grub-efi-bootloader)
-                (targets (list "/boot/efi"))
-                (keyboard-layout keyboard-layout)))
-  (mapped-devices (list (mapped-device
-                          (source (uuid
-                                   "53c31fd3-6a02-429d-bf90-b540bcb53ec9"))
-                          (target "cryptroot")
-                          (type luks-device-mapping))))
+		(bootloader grub-efi-bootloader)
+		(targets (list "/boot/efi"))
+		(keyboard-layout keyboard-layout)))
+
+  (mapped-devices (list
+		    (mapped-device
+		      (source (uuid "53c31fd3-6a02-429d-bf90-b540bcb53ec9"))
+		      (target "cryptroot")
+		      (type luks-device-mapping))))
 
   ;; The list of file systems that get "mounted".  The unique
   ;; file system identifiers there ("UUIDs") can be obtained
   ;; by running 'blkid' in a terminal.
-  (file-systems (cons* (file-system
-                         (mount-point "/")
-                         (device "/dev/mapper/cryptroot")
-                         (type "btrfs")
-                         (dependencies mapped-devices))
-                       (file-system
-                         (mount-point "/boot/efi")
-                         (device (uuid "4454-633B"
-                                       'fat32))
-                         (type "vfat")) %base-file-systems)))
+  (file-systems (cons*
+		  (file-system (mount-point "/")
+			       (device "/dev/mapper/cryptroot")
+			       (type "btrfs")
+			       (dependencies mapped-devices))
+		  (file-system (mount-point "/boot/efi")
+			       (device (uuid "4454-633B" 'fat32))
+			       (type "vfat"))
+		  %base-file-systems)))
