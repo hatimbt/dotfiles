@@ -33,4 +33,13 @@
           (make-channel-introduction
             "64d0b70c547095ddc840dd07424b9a46ccc2e64e"
             (openpgp-fingerprint
-              "C9BE B8A0 4458 FDDF 1268 1B39 029D 8EB7 7E18 D68C")))))
+              "C9BE B8A0 4458 FDDF 1268 1B39 029D 8EB7 7E18 D68C"))))
+      (channel
+	(name 'guixrus)
+	(url "https://git.sr.ht/~whereiseveryone/guixrus")
+	(branch "master")
+	(introduction
+	  (make-channel-introduction
+	    "7c67c3a9f299517bfc4ce8235628657898dd26b2"
+	    (openpgp-fingerprint
+	      "CD2D 5EAA A98C CB37 DA91  D6B0 5F58 1664 7F8B E551")))))
