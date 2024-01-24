@@ -102,7 +102,8 @@
 		   "ungoogled-chromium-wayland"
 
 		   "vscodium"
-		   "neovim")))
+		   "neovim"
+		   "neovim-packer")))
 
   ;; Below is the list of Home services.  To search for available
   ;; services, run 'guix home search KEYWORD' in a terminal.
@@ -127,7 +128,8 @@
 
 	  (service home-xdg-configuration-files-service-type
 		   `(("git/config", (local-file "../files/git/config"))
-		     ("tmux/tmux.conf", (local-file "../files/tmux.conf"))))
+		     ("tmux/tmux.conf", (local-file "../files/tmux.conf"))
+		     ("nvim", (local-file "../files/nvim" #:recursive? #t))))
 
 	  ;; Install and configure dwl-guile wayland compositor
 	  ;; by engstrand.
