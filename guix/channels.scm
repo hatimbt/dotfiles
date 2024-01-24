@@ -17,7 +17,7 @@
             (openpgp-fingerprint
               "2A39 3FFF 68F4 EF7A 3D29  12AF 6F51 20A0 22FB B2D5"))))
       (channel
-        (name home-service-dwl-guile)
+        (name 'home-service-dwl-guile)
         (url "https://github.com/engstrand-config/home-service-dwl-guile")
         (branch "main")
         (introduction
@@ -26,7 +26,7 @@
             (openpgp-fingerprint
               "C9BE B8A0 4458 FDDF 1268 1B39 029D 8EB7 7E18 D68C"))))
       (channel
-        (name home-service-dtao-guile)
+        (name 'home-service-dtao-guile)
         (url "https://github.com/engstrand-config/home-service-dtao-guile")
         (branch "main")
         (introduction
