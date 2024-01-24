@@ -94,6 +94,7 @@
 		   "tmux"
 
 		   "bemenu"
+		   "localed"
 
 		   "st"
 		   "foot"
@@ -138,7 +139,9 @@
 		     (package
 		       (patch-dwl-guile-package dwl-guile
 						#:patches (list %patch-xwayland)))
-		     (auto-start? #t)))
+		     (auto-start? #t)
+			 (config (list '((set-xkb-rules '((model . "thinkpad")
+											  (layout . "gb"))))))))
 
 	  (service home-dtao-guile-service-type
 		   (home-dtao-guile-configuration
