@@ -92,6 +92,9 @@
 		 '("git"
 		   "openssh"
 
+		   ;; DNS Utils
+		   "bind"
+
 		   "htop"
 		   "tmux"
 		   "bat"
