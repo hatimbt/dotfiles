@@ -16,7 +16,10 @@ return require('packer').startup(function(use)
 	use 'wbthomason/packer.nvim' -- Package manager
 	use 'casonadams/walh' -- Theme
 	use 'nvim-lualine/lualine.nvim' -- Modeline
-	use 'neovim/nvim-lspconfig'
+	use 'williamboman/mason.nvim'
+    use 'williamboman/mason-lspconfig.nvim'
+    use 'neovim/nvim-lspconfig' 
+    use 'simrat39/rust-tools.nvim'
 
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins

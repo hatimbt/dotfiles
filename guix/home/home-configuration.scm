@@ -105,6 +105,13 @@
 		   "ungoogled-chromium-wayland"
 
 		   "vscodium"
+		   ;;"helix"
+
+		   "rust"
+		   "rust-cargo"
+		   "rust-home"
+		   "rust-analyzer"
+
 		   "neovim"
 		   "neovim-packer")))
 

@@ -1,3 +1,3 @@
 require('plugins.config.walh')
 require('plugins.config.lualine')
-require('plugins.config.nvim-lspconfig')
+require('plugins.config.mason')
