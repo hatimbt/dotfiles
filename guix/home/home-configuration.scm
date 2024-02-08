@@ -94,6 +94,7 @@
 
 		   "htop"
 		   "tmux"
+		   "bat"
 
 		   "bemenu"
 		   "localed"
