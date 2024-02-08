@@ -97,6 +97,8 @@
 
 		   "bemenu"
 		   "localed"
+		   "wl-clipboard"
+		   "wl-clipboard-x11"
 
 		   "st"
 		   "foot"
