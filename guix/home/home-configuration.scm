@@ -110,6 +110,7 @@
 		   "firefox"
 		   "ungoogled-chromium-wayland"
 
+		   "emacs"
 		   "vscodium"
 		   ;;"helix"
 
