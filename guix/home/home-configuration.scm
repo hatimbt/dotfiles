@@ -189,7 +189,8 @@
 	  (service home-xdg-configuration-files-service-type
 		   `(("git/config", (local-file "../files/git/config"))
 		     ("tmux/tmux.conf", (local-file "../files/tmux.conf"))
-		     ("nvim", (local-file "../files/nvim" #:recursive? #t))))
+		     ("nvim", (local-file "../files/nvim" #:recursive? #t))
+		     ("emacs", (local-file "../files/emacs" #:recursive? #t))))
 
 	  ;; Install and configure dwl-guile wayland compositor
 	  ;; by engstrand.
