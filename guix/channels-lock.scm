@@ -3,7 +3,7 @@
         (url "https://git.savannah.gnu.org/git/guix.git")
         (branch "master")
         (commit
-          "8e0847e038c4bb68f2c23fc6d189f07f38d1e8e9")
+          "07ecdb99b6c4b6b3e993d08034138bf69414020b")
         (introduction
           (make-channel-introduction
             "9edb3f66fd807b096b48283debdcddccfea34bad"
@@ -14,9 +14,42 @@
         (url "https://gitlab.com/nonguix/nonguix")
         (branch "master")
         (commit
-          "0f7c8e3e2b72c19d8a60b2a7e94a9ca8783d4754")
+          "10318ef7dd53c946bae9ed63f7e0e8bb8941b6b1")
         (introduction
           (make-channel-introduction
             "897c1a470da759236cc11798f4e0a5f7d4d59fbc"
             (openpgp-fingerprint
-              "2A39 3FFF 68F4 EF7A 3D29  12AF 6F51 20A0 22FB B2D5")))))
+              "2A39 3FFF 68F4 EF7A 3D29  12AF 6F51 20A0 22FB B2D5"))))
+      (channel
+        (name 'rde)
+        (url "https://git.sr.ht/~abcdw/rde")
+        (branch "master")
+        (commit
+          "72ae8364e4846172453c4ec05656bda2b495f2e3")
+        (introduction
+          (make-channel-introduction
+            "257cebd587b66e4d865b3537a9a88cccd7107c95"
+            (openpgp-fingerprint
+              "2841 9AC6 5038 7440 C7E9  2FFA 2208 D209 58C1 DEB0"))))
+      (channel
+        (name 'home-service-dwl-guile)
+        (url "https://github.com/engstrand-config/home-service-dwl-guile")
+        (branch "main")
+        (commit
+          "09045a658a17a914d1bda4d23c04d99c40a1d63b")
+        (introduction
+          (make-channel-introduction
+            "314453a87634d67e914cfdf51d357638902dd9fe"
+            (openpgp-fingerprint
+              "C9BE B8A0 4458 FDDF 1268  1B39 029D 8EB7 7E18 D68C"))))
+      (channel
+        (name 'home-service-dtao-guile)
+        (url "https://github.com/engstrand-config/home-service-dtao-guile")
+        (branch "main")
+        (commit
+          "ad32455058d588452519edf49f761eb298c9e9bd")
+        (introduction
+          (make-channel-introduction
+            "64d0b70c547095ddc840dd07424b9a46ccc2e64e"
+            (openpgp-fingerprint
+              "C9BE B8A0 4458 FDDF 1268  1B39 029D 8EB7 7E18 D68C")))))
