@@ -25,201 +25,202 @@
 
 (define (dtao-guile-left-blocks)
   (append
-    (map
-      (lambda (tag)
-	(let ((str (string-append "^p(8)" (number->string tag) "^p(8)"))
-	      (index (- tag 1)))
-	  (dtao-block
-	    (interval 0)
-	    (events? #t)
-	    (click `(match button
-			   (0 (dtao:view ,index))))
-	    (render `(cond
-		       ((dtao:selected-tag? ,index)
-			,(format #f "^bg(~a)^fg(~a)~a^fg()^bg()"
-				 "#ffcc00"
-				 "#191919"
-				 str))
-		       ((dtao:urgent-tag? ,index)
-			,(format #f "^bg(~a)^fg(~a)~a^fg()^bg()"
-				 "#ff0000"
-				 "#ffffff"
-				 str))
-		       ((dtao:active-tag? ,index)
-			,(format #f "^bg(~a)^fg(~a)~a^fg()^bg()"
-				 "#323232"
-				 "#ffffff"
-				 str))
-		       (else ,str))))))
-      (iota 9 1))
-    (list
-      (dtao-block
-	(events? #t)
-	(click `(dtao:next-layout))
-	(render `(string-append "^p(4)" (dtao:get-layout)))))))
+   (map
+    (lambda (tag)
+      (let ((str (string-append "^p(8)" (number->string tag) "^p(8)"))
+	    (index (- tag 1)))
+	(dtao-block
+	 (interval 0)
+	 (events? #t)
+	 (click `(match button
+		   (0 (dtao:view ,index))))
+	 (render `(cond
+		   ((dtao:selected-tag? ,index)
+		    ,(format #f "^bg(~a)^fg(~a)~a^fg()^bg()"
+			     "#ffcc00"
+			     "#191919"
+			     str))
+		   ((dtao:urgent-tag? ,index)
+		    ,(format #f "^bg(~a)^fg(~a)~a^fg()^bg()"
+			     "#ff0000"
+			     "#ffffff"
+			     str))
+		   ((dtao:active-tag? ,index)
+		    ,(format #f "^bg(~a)^fg(~a)~a^fg()^bg()"
+			     "#323232"
+			     "#ffffff"
+			     str))
+		   (else ,str))))))
+    (iota 9 1))
+   (list
+    (dtao-block
+     (events? #t)
+     (click `(dtao:next-layout))
+     (render `(string-append "^p(4)" (dtao:get-layout)))))))
 
 (define (dtao-guile-center-blocks)
   (list
-    (dtao-block
-      (events? #t)
-      (render `(dtao:title)))))
+   (dtao-block
+    (events? #t)
+    (render `(dtao:title)))))
 
 (define (dtao-guile-right-blocks)
   (list
-    (dtao-block
-      (interval 1)
-      (render `(strftime "%A, %d %b (w.%V) %T" (localtime (current-time)))))
-    (dtao-block
-      (position "right")
-      (interval 10)
-      (render
-	`(let* ((port (open-input-file ,"/sys/class/power_supply/BAT0/capacity"))
-		(result (read-line port))
-		(percent (string->number result)))
-	   (close-port port)
-	   (string-append "^fg("
-			  (cond
-			    ((<= percent 20) ,"#ff0000")
-			    ((<= percent 50) ,"#ffffff")
-			    (else ,"#00ff00"))
-			  ")" result "%^fg()"))))))
+   (dtao-block
+    (interval 1)
+    (render `(strftime "%A, %d %b (w.%V) %T" (localtime (current-time)))))
+   (dtao-block
+    (position "right")
+    (interval 10)
+    (render
+     `(let* ((port (open-input-file ,"/sys/class/power_supply/BAT0/capacity"))
+	     (result (read-line port))
+	     (percent (string->number result)))
+	(close-port port)
+	(string-append "^fg("
+		       (cond
+			((<= percent 20) ,"#ff0000")
+			((<= percent 50) ,"#ffffff")
+			(else ,"#00ff00"))
+		       ")" result "%^fg()"))))))
 
 
 (home-environment
-  ;; Below is the list of packages that will show up in your
-  ;; Home profile, under ~/.guix-home/profile.
-  (packages (map specification->package
-		 '("git"
-		   "openssh"
+ ;; Below is the list of packages that will show up in your
+ ;; Home profile, under ~/.guix-home/profile.
+ (packages
+  (map specification->package
+       '("git"
+	 "openssh"
 
-		   ;; DNS Utils
-		   "bind"
+	 ;; DNS Utils
+	 "bind"
 
-		   "htop"
-		   "tmux"
-		   "bat"
+	 "htop"
+	 "tmux"
+	 "bat"
 
-		   "bemenu"
-		   "localed"
-		   "wl-clipboard"
-		   "wl-clipboard-x11"
+	 "bemenu"
+	 "localed"
+	 "wl-clipboard"
+	 "wl-clipboard-x11"
 
-		   "st"
-		   "foot"
+	 "st"
+	 "foot"
 
-		   "firefox"
-		   "ungoogled-chromium-wayland"
+	 "firefox"
+	 "ungoogled-chromium-wayland"
 
-		   "emacs-pgtk"
-		   "emacs-geiser"
-		   "emacs-geiser-guile"
+	 "emacs-pgtk"
+	 "emacs-geiser"
+	 "emacs-geiser-guile"
 		   
-		   "vscodium"
-		   ;;"helix"
+	 "vscodium"
+	 ;;"helix"
 
-		   "rust"
-		   "rust-cargo"
-		   "rust-home"
-		   "rust-analyzer"
+	 "rust"
+	 "rust-cargo"
+	 "rust-home"
+	 "rust-analyzer"
 
-		   "neovim"
-		   "neovim-packer")))
+	 "neovim"
+	 "neovim-packer")))
 
-  ;; Below is the list of Home services.  To search for available
-  ;; services, run 'guix home search KEYWORD' in a terminal.
-  (services
-    (list
-	  (service home-bash-service-type
-		   (home-bash-configuration
-		     (aliases '(("grep" . "grep --color=auto")
-				("ll" . "ls -l")
-				("ls" . "ls -p --color=auto")))
-		     (bashrc (list (local-file
-				     "../files/rc.bash"
-				     "bashrc")))
-		     (bash-profile (list (local-file
-					   "../files/profile.bash"
-					   "bash_profile")))))
+ ;; Below is the list of Home services.  To search for available
+ ;; services, run 'guix home search KEYWORD' in a terminal.
+ (services
+  (list
+   (service home-bash-service-type
+	    (home-bash-configuration
+	     (aliases '(("grep" . "grep --color=auto")
+			("ll" . "ls -l")
+			("ls" . "ls -p --color=auto")))
+	     (bashrc (list (local-file
+			    "../files/rc.bash"
+			    "bashrc")))
+	     (bash-profile (list (local-file
+				  "../files/profile.bash"
+				  "bash_profile")))))
 
-	  (simple-service 'variant-packages-service
-					  home-channels-service-type
-					  (list
-						(channel
-						  (name 'nonguix)
-						  (url "https://gitlab.com/nonguix/nonguix")
-						  (branch "master")
-						  (introduction
-							(make-channel-introduction
-							  "897c1a470da759236cc11798f4e0a5f7d4d59fbc"
-							  (openpgp-fingerprint
-								"2A39 3FFF 68F4 EF7A 3D29  12AF 6F51 20A0 22FB B2D5"))))
-						(channel
-						  (name 'rde)
-						  (url "https://git.sr.ht/~abcdw/rde")
-						  (introduction
-							(make-channel-introduction
-							  "257cebd587b66e4d865b3537a9a88cccd7107c95"
-							  (openpgp-fingerprint
-								"2841 9AC6 5038 7440 C7E9  2FFA 2208 D209 58C1 DEB0"))))
-						(channel
-						  (name 'home-service-dwl-guile)
-						  (url "https://github.com/engstrand-config/home-service-dwl-guile")
-						  (branch "main")
-						  (introduction
-							(make-channel-introduction
-							  "314453a87634d67e914cfdf51d357638902dd9fe"
-							  (openpgp-fingerprint
-								"C9BE B8A0 4458 FDDF 1268 1B39 029D 8EB7 7E18 D68C"))))
-						(channel
-						  (name 'home-service-dtao-guile)
-						  (url "https://github.com/engstrand-config/home-service-dtao-guile")
-						  (branch "main")
-						  (introduction
-							(make-channel-introduction
-							  "64d0b70c547095ddc840dd07424b9a46ccc2e64e"
-							  (openpgp-fingerprint
-								"C9BE B8A0 4458 FDDF 1268 1B39 029D 8EB7 7E18 D68C"))))))
+   (simple-service 'variant-packages-service
+		   home-channels-service-type
+		   (list
+		    (channel
+		     (name 'nonguix)
+		     (url "https://gitlab.com/nonguix/nonguix")
+		     (branch "master")
+		     (introduction
+		      (make-channel-introduction
+		       "897c1a470da759236cc11798f4e0a5f7d4d59fbc"
+		       (openpgp-fingerprint
+			"2A39 3FFF 68F4 EF7A 3D29  12AF 6F51 20A0 22FB B2D5"))))
+		    (channel
+		     (name 'rde)
+		     (url "https://git.sr.ht/~abcdw/rde")
+		     (introduction
+		      (make-channel-introduction
+		       "257cebd587b66e4d865b3537a9a88cccd7107c95"
+		       (openpgp-fingerprint
+			"2841 9AC6 5038 7440 C7E9  2FFA 2208 D209 58C1 DEB0"))))
+		    (channel
+		     (name 'home-service-dwl-guile)
+		     (url "https://github.com/engstrand-config/home-service-dwl-guile")
+		     (branch "main")
+		     (introduction
+		      (make-channel-introduction
+		       "314453a87634d67e914cfdf51d357638902dd9fe"
+		       (openpgp-fingerprint
+			"C9BE B8A0 4458 FDDF 1268 1B39 029D 8EB7 7E18 D68C"))))
+		    (channel
+		     (name 'home-service-dtao-guile)
+		     (url "https://github.com/engstrand-config/home-service-dtao-guile")
+		     (branch "main")
+		     (introduction
+		      (make-channel-introduction
+		       "64d0b70c547095ddc840dd07424b9a46ccc2e64e"
+		       (openpgp-fingerprint
+			"C9BE B8A0 4458 FDDF 1268 1B39 029D 8EB7 7E18 D68C"))))))
 
-	  ;; Requires the `openssh` package
-	  (service home-openssh-service-type
-		   (home-openssh-configuration
-		     (add-keys-to-agent "ask")))
-	  (service home-ssh-agent-service-type)
+   ;; Requires the `openssh` package
+   (service home-openssh-service-type
+	    (home-openssh-configuration
+	     (add-keys-to-agent "ask")))
 
-	  (service home-xdg-configuration-files-service-type
-		   `(("git/config", (local-file "../files/git/config"))
-		     ("tmux/tmux.conf", (local-file "../files/tmux.conf"))
-		     ("nvim", (local-file "../files/nvim" #:recursive? #t))
-		     ("emacs", (local-file "../files/emacs" #:recursive? #t))))
+   (service home-ssh-agent-service-type)
 
-	  ;; Install and configure dwl-guile wayland compositor
-	  ;; by engstrand.
-	  (service home-dwl-guile-service-type
-		   (home-dwl-guile-configuration
-		     (package
-		       (patch-dwl-guile-package dwl-guile
-						#:patches (list %patch-xwayland)))
-		     (auto-start? #t)
-			 (config (list '((set-xkb-rules '((model . "thinkpad")
-											  (layout . "gb"))))))))
+   (service home-xdg-configuration-files-service-type
+	    `(("git/config", (local-file "../files/git/config"))
+	      ("tmux/tmux.conf", (local-file "../files/tmux.conf"))
+	      ("nvim", (local-file "../files/nvim" #:recursive? #t))
+	      ("emacs", (local-file "../files/emacs" #:recursive? #t))))
 
-	  (service home-dtao-guile-service-type
-		   (home-dtao-guile-configuration
-		     (auto-start? #t)
-		     (config
-		       (dtao-config
-			 (block-spacing 0)
-			 (modules '((ice-9 match)
-				    (ice-9 popen)
-				    (ice-9 rdelim)
-				    (srfi srfi-1)))
-			 (padding-left 0)
-			 (padding-top 0)
-			 (padding-bottom 0)
-			 (height 25)
-			 ;; Ensure that blocks have spacing between them
-			 (delimiter-right " ")
-			 (left-blocks (dtao-guile-left-blocks))
-			 (right-blocks (dtao-guile-right-blocks))
-			 (center-blocks (dtao-guile-center-blocks)))))))))
+   ;; Install and configure dwl-guile wayland compositor
+   ;; by engstrand.
+   (service home-dwl-guile-service-type
+	    (home-dwl-guile-configuration
+	     (package
+	      (patch-dwl-guile-package dwl-guile
+				       #:patches (list %patch-xwayland)))
+	     (auto-start? #t)
+	     (config (list '((set-xkb-rules '((model . "thinkpad")
+					      (layout . "gb"))))))))
 
+   (service home-dtao-guile-service-type
+	    (home-dtao-guile-configuration
+	     (auto-start? #t)
+	     (config
+	      (dtao-config
+	       (block-spacing 0)
+	       (modules '((ice-9 match)
+			  (ice-9 popen)
+			  (ice-9 rdelim)
+			  (srfi srfi-1)))
+	       (padding-left 0)
+	       (padding-top 0)
+	       (padding-bottom 0)
+	       (height 25)
+	       ;; Ensure that blocks have spacing between them
+	       (delimiter-right " ")
+	       (left-blocks (dtao-guile-left-blocks))
+	       (right-blocks (dtao-guile-right-blocks))
+	       (center-blocks (dtao-guile-center-blocks)))))))))

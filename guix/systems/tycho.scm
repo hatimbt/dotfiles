@@ -24,104 +24,104 @@
 
 (operating-system
 
-  (kernel linux)
-  (firmware (list linux-firmware))
-  (initrd microcode-initrd) 
+ (kernel linux)
+ (firmware (list linux-firmware))
+ (initrd microcode-initrd) 
 
-  (locale "en_GB.utf8")
-  (timezone "Europe/London")
-  (keyboard-layout (keyboard-layout "gb"))
-  (host-name "tycho")
+ (locale "en_GB.utf8")
+ (timezone "Europe/London")
+ (keyboard-layout (keyboard-layout "gb"))
+ (host-name "tycho")
 
-  ;; The list of user accounts ('root' is implicit).
-  (users (cons* (user-account
-		  (name "hatim")
-		  (comment "Hatim")
-		  (group "users")
-		  (home-directory "/home/hatim")
-		  (supplementary-groups '("wheel"
-					  "netdev"
-					  "audio"
-					  "video")))
-		%base-user-accounts))
+ ;; The list of user accounts ('root' is implicit).
+ (users (cons* (user-account
+		(name "hatim")
+		(comment "Hatim")
+		(group "users")
+		(home-directory "/home/hatim")
+		(supplementary-groups '("wheel"
+					"netdev"
+					"audio"
+					"video")))
+	       %base-user-accounts))
 
-  ;; Packages installed system-wide.  Users can also install packages
-  ;; under their own account: use 'guix search KEYWORD' to search
-  ;; for packages and 'guix install PACKAGE' to install a package.
-  (packages (append (list
-		      nss-certs
-		      git)
-		    %base-packages))
+ ;; Packages installed system-wide.  Users can also install packages
+ ;; under their own account: use 'guix search KEYWORD' to search
+ ;; for packages and 'guix install PACKAGE' to install a package.
+ (packages (append (list
+		    nss-certs
+		    git)
+		   %base-packages))
 
-  ;; Below is the list of system services.  To search for available
-  ;; services, run 'guix system search KEYWORD' in a terminal.
-  (services (append
-	      (modify-services
-		%desktop-services
-		(guix-service-type config =>
-				   (guix-configuration
-				     (inherit config)
-				     (substitute-urls
-				       (append (list
-						 "https://substitutes.nonguix.org")
-					       %default-substitute-urls))
-				     (authorized-keys
-				       (append (list
-						 (local-file "../files/nonguix-signing-key.pub"))
-					       %default-authorized-guix-keys))))
-		(delete login-service-type)
-		;; TODO: Multiple removes are necessary right now due to a bug in
-		;; `modify-services`
-		(delete mingetty-service-type)
-		(delete gdm-service-type)
-		(delete console-font-service-type))
+ ;; Below is the list of system services.  To search for available
+ ;; services, run 'guix system search KEYWORD' in a terminal.
+ (services (append
+	    (modify-services
+	     %desktop-services
+	     (guix-service-type config =>
+				(guix-configuration
+				 (inherit config)
+				 (substitute-urls
+				  (append (list
+					   "https://substitutes.nonguix.org")
+					  %default-substitute-urls))
+				 (authorized-keys
+				  (append (list
+					   (local-file "../files/nonguix-signing-key.pub"))
+					  %default-authorized-guix-keys))))
+	     (delete login-service-type)
+	     ;; TODO: Multiple removes are necessary right now due to a bug in
+	     ;; `modify-services`
+	     (delete mingetty-service-type)
+	     (delete gdm-service-type)
+	     (delete console-font-service-type))
 
-	      (list
-		(service screen-locker-service-type
-			 (screen-locker-configuration
-			   (name "swaylock")
-			   (program (file-append swaylock "/bin/swaylock"))
-			   (using-setuid? #f)
-			   (using-pam? #t)))
+	    (list
+	     (service screen-locker-service-type
+		      (screen-locker-configuration
+		       (name "swaylock")
+		       (program (file-append swaylock "/bin/swaylock"))
+		       (using-setuid? #f)
+		       (using-pam? #t)))
 
-		(service greetd-service-type
-			 (greetd-configuration
-			   ;; (greeter-supplementary-groups (list "video" "input"))
-			   (terminals
-			     (list
-			       ;; TTY1 is the graphical login screen for Sway
-			       (greetd-terminal-configuration
-				 (terminal-vt "1")
-				 (terminal-switch #t))
+	     (service greetd-service-type
+		      (greetd-configuration
+		       ;; (greeter-supplementary-groups (list "video" "input"))
+		       (terminals
+			(list
+			 ;; TTY1 is the graphical login screen for Sway
+			 (greetd-terminal-configuration
+			  (terminal-vt "1")
+			  (terminal-switch #t))
 
-			       ;; Set up remaining TTYs for terminal use
-			       (greetd-terminal-configuration (terminal-vt "2"))
-			       (greetd-terminal-configuration (terminal-vt "3"))
-			       (greetd-terminal-configuration (terminal-vt "4"))
-			       (greetd-terminal-configuration (terminal-vt "5"))
-			       (greetd-terminal-configuration (terminal-vt "6")))))))))
+			 ;; Set up remaining TTYs for terminal use
+			 (greetd-terminal-configuration (terminal-vt "2"))
+			 (greetd-terminal-configuration (terminal-vt "3"))
+			 (greetd-terminal-configuration (terminal-vt "4"))
+			 (greetd-terminal-configuration (terminal-vt "5"))
+			 (greetd-terminal-configuration (terminal-vt "6")))))))))
 
   
-  (bootloader (bootloader-configuration
-		(bootloader grub-efi-bootloader)
-		(targets (list "/boot/efi"))
-		(keyboard-layout keyboard-layout)))
+ (bootloader (bootloader-configuration
+	      (bootloader grub-efi-bootloader)
+	      (targets (list "/boot/efi"))
+	      (keyboard-layout keyboard-layout)))
 
-  (mapped-devices (list
-		    (mapped-device
-		      (source (uuid "53c31fd3-6a02-429d-bf90-b540bcb53ec9"))
-		      (target "cryptroot")
-		      (type luks-device-mapping))))
+ (mapped-devices (list
+		  (mapped-device
+		   (source (uuid "53c31fd3-6a02-429d-bf90-b540bcb53ec9"))
+		   (target "cryptroot")
+		   (type luks-device-mapping))))
 
-  ;; The list of file systems that get "mounted".  The unique
-  ;; file system identifiers there ("UUIDs") can be obtained
-  ;; by running 'blkid' in a terminal.
-  (file-systems (cons*
-		  (file-system (mount-point "/")
-			       (device "/dev/mapper/cryptroot")
-			       (type "btrfs")
-			       (dependencies mapped-devices))
-		  (file-system (mount-point "/boot/efi")
-			       (device (uuid "4454-633B" 'fat32))
-			       (type "vfat"))
-		  %base-file-systems)))
+ ;; The list of file systems that get "mounted".  The unique
+ ;; file system identifiers there ("UUIDs") can be obtained
+ ;; by running 'blkid' in a terminal.
+ (file-systems (cons*
+		(file-system (mount-point "/")
+			     (device "/dev/mapper/cryptroot")
+			     (type "btrfs")
+			     (dependencies mapped-devices))
+		(file-system (mount-point "/boot/efi")
+			     (device (uuid "4454-633B" 'fat32))
+			     (type "vfat"))
+		%base-file-systems)))
