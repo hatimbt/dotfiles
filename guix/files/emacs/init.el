@@ -96,6 +96,12 @@
   :config
   (evil-collection-init))
 
+(use-package symex
+  :config
+  (symex-initialize)
+  :custom
+  (symex-modal-backend 'evil))
+
 (use-package keycast
   :init
   (keycast-mode-line-mode))
