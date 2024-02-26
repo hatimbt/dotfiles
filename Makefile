@@ -7,7 +7,6 @@ hb:
 			guix time-machine -C guix/channels-lock.scm -- \
 			home build --cores=$(NPROCS) $(CONFIG_FILE)
 
-
 sb:
 	GUILE_LOAD_PATH=$(GLP) TARGET=${HOSTNAME}-system \
 			guix time-machine -C guix/channels-lock.scm -- \
@@ -18,6 +17,10 @@ hbl:
 			guix time-machine -C guix/channels-local-lock.scm -- \
 			home build --cores=$(NPROCS) $(CONFIG_FILE)
 
+hcl:
+	GUILE_LOAD_PATH=$(GLP) TARGET=${HOSTNAME}-home \
+			guix time-machine -C guix/channels-local-lock.scm -- \
+			home container --cores=$(NPROCS) $(CONFIG_FILE)
 
 sbl:
 	GUILE_LOAD_PATH=$(GLP) TARGET=${HOSTNAME}-system \
