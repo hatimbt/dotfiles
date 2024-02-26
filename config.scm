@@ -5,10 +5,17 @@
   #:use-module (rde features ssh)
   #:use-module (rde features keyboard)
   #:use-module (rde features wm)
+  #:use-module (rde features emacs)
+  #:use-module (rde features emacs-xyz)
+  #:use-module (contrib features emacs-xyz)
+  #:use-module (rde features tmux)
   
   #:use-module (rde packages)
 
   #:use-module (luna features networking)
+  
+  #:use-module (thayyil features dwl-guile)
+  #:use-module (thayyil features dtao-guile)
   
   #:use-module (gnu services)
   #:use-module (gnu packages certs)
@@ -18,6 +25,8 @@
   #:use-module (gnu bootloader grub)
   #:use-module (gnu system file-systems)
   #:use-module (gnu system mapped-devices)
+
+  #:use-module (gnu home services)
 
   #:use-module (nongnu packages linux)
   #:use-module (nongnu system linux-initrd)
@@ -29,7 +38,7 @@
 
 (define %base-features
   (list
-   ;;; User info
+   ;; User info
    (feature-user-info
     #:user-name "hatim"
     #:full-name "Hatim Thayyil"
@@ -37,7 +46,7 @@
     #:user-groups (list "wheel" "audio" "video"
                         "input" "lp"))
 
-   ;;; Keyboard layout
+   ;; Keyboard layout
    (feature-keyboard
     #:keyboard-layout
     (keyboard-layout "gb"))
@@ -45,17 +54,51 @@
    ;; Networking
    (feature-networking)
 
-   ;;; Services
+   ;; Services
    (feature-base-services
     #:guix-substitute-urls (list "https://bordeaux.guix.gnu.org"
                                  "https://substitutes.nonguix.org")
     #:guix-authorized-keys (list (local-file "./guix/files/nonguix-signing-key.pub")))
    (feature-desktop-services)
 
+   (feature-dwl-guile)
+   (feature-statusbar-dtao-guile)
+
    (feature-swaylock)
    
-   ;;; SSH
-   (feature-ssh)))
+   ;; SSH
+   (feature-ssh)
+
+   ;; Shell
+   (feature-tmux)
+   
+   ;; Emacs
+   (feature-emacs)
+   (feature-emacs-git)
+   (feature-emacs-keycast)
+   (feature-emacs-appearance)
+   (feature-emacs-modus-themes)
+   (feature-emacs-completion)
+   (feature-emacs-evil)
+   (feature-emacs-which-key)
+   (feature-emacs-vertico)
+   (feature-emacs-corfu)
+   (feature-emacs-help)
+   (feature-emacs-pdf-tools)
+
+   (feature-emacs-org)
+
+   (feature-emacs-denote
+    #:denote-directory "~/org")
+
+   ;; Services
+   (feature-custom-services
+    #:home-services
+    (list
+     (service home-xdg-configuration-files-service-type
+	      `(("git/config", (local-file "./guix/files/git/config"))
+		("tmux/tmux.conf", (local-file "./guix/files/tmux.conf"))
+		("nvim", (local-file "./guix/files/nvim" #:recursive? #t))))))))
    
 ;;;
 ;;; Default packages
@@ -65,12 +108,28 @@
    (strings->packages
     "git" "curl" "vim" "make"
 
+    ;; Utils
+    "htop" "bat"
+
+    ;; DNS Utils
+    "bind"
+
+    ;; Desktop
+    "bemenu" "localed" "wl-clipboard" "wl-clipboard-x11"
+
+    ;; Terminals
+    "st" "foot"
+
     "flatpak"
 
     "pavucontrol"
 
-    "firefox"
-)))
+    ;; Web
+    "firefox" "ungoogled-chromium-wayland"
+
+    ;; Editors
+    "vscodium" "neovim" "neovim-packer"
+    )))
 
 (define %base-system-packages
   '())
@@ -97,12 +156,13 @@
 
 (define tycho-features
   (list
-   ;;; Host info
+   ;; Host info
    (feature-host-info
     #:host-name "tycho"
     #:timezone  "Europe/London"
     #:locale "en_GB.utf8")
 
+   ;; Bootloader
    (feature-bootloader
     #:bootloader-configuration
     (bootloader-configuration
@@ -110,18 +170,18 @@
      (targets (list "/boot/efi"))
      (keyboard-layout "gb")))
 
-   ;;; Kernel
+   ;; Kernel
    (feature-kernel
     #:kernel linux
     #:initrd microcode-initrd
     #:firmware (list linux-firmware))
    
-   ;;; File systems
+   ;; File systems
    (feature-file-systems
     #:mapped-devices tycho-mapped-devices
     #:file-systems tycho-filesystems)
 
-   ;;; Packages
+   ;; Packages
    (feature-base-packages
     #:system-packages
     (append %base-system-packages)
