@@ -35,7 +35,7 @@
   #:use-module (nongnu system linux-initrd)
 
   #:use-module (guix gexp)
-  
+
   #:use-module (srfi srfi-1)
   #:use-module (ice-9 match))
 
@@ -68,7 +68,7 @@
    (feature-statusbar-dtao-guile)
 
    (feature-swaylock)
-   
+
    ;; SSH
    (feature-ssh)
 
@@ -102,7 +102,7 @@
 	      `(("git/config", (local-file "./guix/files/git/config"))
 		("tmux/tmux.conf", (local-file "./guix/files/tmux.conf"))
 		("nvim", (local-file "./guix/files/nvim" #:recursive? #t))))))))
-   
+
 ;;;
 ;;; Default packages
 ;;;
@@ -182,7 +182,7 @@
     #:kernel linux
     #:initrd microcode-initrd
     #:firmware (list linux-firmware))
-   
+
    ;; File systems
    (feature-file-systems
     #:mapped-devices tycho-mapped-devices

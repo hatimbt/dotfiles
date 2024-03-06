@@ -21,7 +21,7 @@ hcl:
 	GUILE_LOAD_PATH=$(GLP) TARGET=${HOSTNAME}-home \
 			guix time-machine -C guix/channels-local-lock.scm -- \
 			home container --cores=$(NPROCS) $(CONFIG_FILE)
-
+			
 sbl:
 	GUILE_LOAD_PATH=$(GLP) TARGET=${HOSTNAME}-system \
 			guix time-machine -C guix/channels-local-lock.scm -- \
