@@ -58,4 +58,15 @@
           (make-channel-introduction
             "64d0b70c547095ddc840dd07424b9a46ccc2e64e"
             (openpgp-fingerprint
+              "C9BE B8A0 4458 FDDF 1268  1B39 029D 8EB7 7E18 D68C"))))
+      (channel
+        (name 'farg)
+        (url "https://github.com/engstrand-config/farg")
+        (branch "main")
+        (commit
+          "f84ffd7d65554a0c4b851ee80547fa8aa7142378")
+        (introduction
+          (make-channel-introduction
+            "f94df02065d8691880dd5414e5c5ad27388d450f"
+            (openpgp-fingerprint
               "C9BE B8A0 4458 FDDF 1268  1B39 029D 8EB7 7E18 D68C")))))
