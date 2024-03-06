@@ -17,7 +17,8 @@
   
   #:use-module (thayyil features dwl-guile)
   #:use-module (thayyil features dtao-guile)
-  
+  #:use-module (thayyil features laptop)
+
   #:use-module (gnu services)
   #:use-module (gnu packages certs)
   #:use-module (gnu packages version-control)
@@ -158,6 +159,10 @@
 
 (define tycho-features
   (list
+   ;; Laptop
+   (feature-laptop)
+   (feature-laptop-tlp)
+   (feature-laptop-monitor-brightness)
    ;; Host info
    (feature-host-info
     #:host-name "tycho"
