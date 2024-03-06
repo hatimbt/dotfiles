@@ -4,6 +4,7 @@
   #:use-module (rde features system)
   #:use-module (rde features ssh)
   #:use-module (rde features keyboard)
+  #:use-module (rde features shellutils)
   #:use-module (rde features wm)
   #:use-module (rde features emacs)
   #:use-module (rde features emacs-xyz)
@@ -71,7 +72,8 @@
 
    ;; Shell
    (feature-tmux)
-   
+   (feature-direnv)
+
    ;; Emacs
    (feature-emacs)
    (feature-emacs-git)
