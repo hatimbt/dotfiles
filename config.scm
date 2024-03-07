@@ -123,6 +123,8 @@
     ;; Terminals
     "st" "foot"
 
+    ;; Dev Utils
+    "just"
     "flatpak"
 
     "pavucontrol"
