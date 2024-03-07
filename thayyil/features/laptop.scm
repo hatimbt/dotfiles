@@ -16,7 +16,6 @@
             feature-laptop
             feature-laptop-tlp
             feature-laptop-monitor-brightness
-            
             %thayyil-laptop-base-features))
 
 (define* (feature-laptop)

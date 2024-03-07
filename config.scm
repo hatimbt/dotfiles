@@ -18,7 +18,6 @@
   #:use-module (thayyil features dwl-guile)
   #:use-module (thayyil features dtao-guile)
   #:use-module (thayyil features laptop)
-  #:use-module (thayyil features emacs)
 
   #:use-module (gnu services)
   #:use-module (gnu packages certs)
@@ -80,7 +79,8 @@
    (feature-emacs)
    (feature-emacs-git)
    (feature-emacs-keycast)
-   (feature-emacs-thayyil-appearance)
+   (feature-emacs-appearance)
+   (feature-emacs-modus-themes)
    (feature-emacs-completion)
    (feature-emacs-evil)
    (feature-emacs-which-key)
