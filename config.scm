@@ -4,6 +4,7 @@
   #:use-module (rde features system)
   #:use-module (rde features ssh)
   #:use-module (rde features keyboard)
+  #:use-module (rde features linux)
   #:use-module (rde features shellutils)
   #:use-module (rde features wm)
   #:use-module (rde features emacs)
@@ -18,6 +19,7 @@
   #:use-module (thayyil features dwl-guile)
   #:use-module (thayyil features dtao-guile)
   #:use-module (thayyil features laptop)
+  #:use-module (thayyil features audio)
 
   #:use-module (gnu services)
   #:use-module (gnu packages certs)
@@ -74,6 +76,10 @@
    ;; Shell
    (feature-tmux)
    (feature-direnv)
+
+   ;; Audio
+   (feature-pipewire)
+   (feature-pulseaudio-control)
 
    ;; Emacs
    (feature-emacs)
