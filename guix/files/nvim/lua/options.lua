@@ -1,5 +1,9 @@
 -- TODO Check the scope of all the options
 
+
+-- Colourscheme
+vim.cmd.colorscheme('modus')
+
 -- Shell to use for `!` and `:!` commands.
 vim.o.shell = '/bin/bash'
 

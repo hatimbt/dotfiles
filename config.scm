@@ -20,6 +20,8 @@
   #:use-module (thayyil features dtao-guile)
   #:use-module (thayyil features laptop)
   #:use-module (thayyil features audio)
+  #:use-module (thayyil packages vim)
+  #:use-module (thayyil features neovim)
   #:use-module (thayyil features rust)
 
   #:use-module (gnu services)
@@ -115,6 +117,10 @@
 ;;;
 (define %dev-features
   (list
+   ;; Neovim
+   (feature-neovim)
+   (feature-neovim-rust)
+
    (feature-rust)
    (feature-rust-dev)))
 
@@ -148,9 +154,9 @@
     ;; Web
     "firefox" "ungoogled-chromium-wayland"
 
+
     ;; Editors
-    "vscodium" "neovim" "neovim-packer"
-    )))
+    "vscodium")))
 
 (define %base-system-packages
   '())

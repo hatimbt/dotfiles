@@ -1,3 +1,2 @@
-require('plugins.config.walh')
 require('plugins.config.lualine')
-require('plugins.config.mason')
+require('plugins.config.lsp_zero')
