@@ -1,4 +1,5 @@
 require('options')
 require('keymaps')
+require('diagnostic')
 require('plugins')
 require('plugins.config')
