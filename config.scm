@@ -164,6 +164,7 @@
    ;; Laptop
    (feature-laptop)
    (feature-laptop-tlp)
+   (feature-laptop-natural-scrolling)
    (feature-laptop-monitor-brightness)
    ;; Host info
    (feature-host-info

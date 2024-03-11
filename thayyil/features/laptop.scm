@@ -15,6 +15,7 @@
   #:export (
             feature-laptop
             feature-laptop-tlp
+            feature-laptop-natural-scrolling
             feature-laptop-monitor-brightness
             %thayyil-laptop-base-features))
 
@@ -45,6 +46,25 @@
   (feature
    (name 'laptop-tlp)
    (system-services-getter get-system-services)))
+
+(define* (feature-laptop-natural-scrolling
+          #:key
+          (natural-scrolling? #t))
+  "Enable/disable natural scrolling in compositor."
+
+  (ensure-pred boolean? natural-scrolling?)
+
+  (define (get-home-services config)
+    (make-service-list
+     (when (get-value 'dwl-guile config)
+       (simple-service
+        'set-natural-scrolling-in-dwl-guile
+        home-dwl-guile-service-type
+        `((setq natural-scrolling? ,natural-scrolling?))))))
+
+  (feature
+   (name 'laptop-natural-scrolling)
+   (home-services-getter get-home-services)))
 
 (define* (feature-laptop-monitor-brightness
           #:key
@@ -85,4 +105,5 @@
   (list
    (feature-laptop)
    (feature-laptop-tlp)
+   (feature-laptop-natural-scrolling)
    (feature-laptop-monitor-brightness)))
