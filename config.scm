@@ -20,6 +20,7 @@
   #:use-module (thayyil features dtao-guile)
   #:use-module (thayyil features laptop)
   #:use-module (thayyil features audio)
+  #:use-module (thayyil features rust)
 
   #:use-module (gnu services)
   #:use-module (gnu packages certs)
@@ -108,6 +109,15 @@
 	      `(("git/config", (local-file "./guix/files/git/config"))
 		("tmux/tmux.conf", (local-file "./guix/files/tmux.conf"))
 		("nvim", (local-file "./guix/files/nvim" #:recursive? #t))))))))
+
+;;;
+;;; Development features
+;;;
+(define %dev-features
+  (list
+   (feature-rust)
+   (feature-rust-dev)))
+
 
 ;;;
 ;;; Default packages
@@ -209,6 +219,7 @@
   (rde-config
    (features (append
 	      %base-features
+	      %dev-features
 	      tycho-features))))
 
 (define tycho-he
