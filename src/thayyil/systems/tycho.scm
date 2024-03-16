@@ -2,6 +2,7 @@
   #:use-module (rde features)
   #:use-module (rde features base)
   #:use-module (rde features system)
+  #:use-module (rde features wm)
   #:use-module (rde packages)
 
   #:use-module (thayyil common)
@@ -100,7 +101,10 @@
             %base-home-packages))
 
    ;; HiDPI
-   (feature-hidpi)))
+   (feature-hidpi)
+
+   ;; Kanshi for monitor profiles
+   (feature-kanshi)))
 
 ;;;
 ;;; RDE configuration for tycho.
