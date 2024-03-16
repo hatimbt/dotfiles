@@ -32,12 +32,6 @@
             (openpgp-fingerprint
               "2841 9AC6 5038 7440 C7E9  2FFA 2208 D209 58C1 DEB0"))))
       (channel
-        (name 'luna)
-        (url "file:///home/hatim/src/craft/luna")
-        (branch "main")
-        (commit
-          "18acde2e248b4ee0031e6f74d0b8ecd1b5940944"))
-      (channel
         (name 'home-service-dwl-guile)
         (url "https://github.com/engstrand-config/home-service-dwl-guile")
         (branch "main")

@@ -26,10 +26,6 @@
          (openpgp-fingerprint
           "2841 9AC6 5038 7440 C7E9  2FFA 2208 D209 58C1 DEB0"))))
       (channel
-       (name 'luna)
-       (url (string-append "file://" (getenv "HOME") "/src/craft/luna"))
-       (branch "main"))
-      (channel
        (name 'home-service-dwl-guile)
        (url "https://github.com/engstrand-config/home-service-dwl-guile")
        (branch "main")
