@@ -3,7 +3,7 @@
         (url "https://git.savannah.gnu.org/git/guix.git")
         (branch "master")
         (commit
-          "07ecdb99b6c4b6b3e993d08034138bf69414020b")
+          "6f05c96f9635da7ca9f421d03a6359ff3b1d1a95")
         (introduction
           (make-channel-introduction
             "9edb3f66fd807b096b48283debdcddccfea34bad"
@@ -14,7 +14,7 @@
         (url "https://gitlab.com/nonguix/nonguix")
         (branch "master")
         (commit
-          "10318ef7dd53c946bae9ed63f7e0e8bb8941b6b1")
+          "8b130114d6998ef4ad1c54ad17ee2d783af51c2f")
         (introduction
           (make-channel-introduction
             "897c1a470da759236cc11798f4e0a5f7d4d59fbc"
@@ -25,7 +25,7 @@
         (url "https://git.sr.ht/~abcdw/rde")
         (branch "master")
         (commit
-          "72ae8364e4846172453c4ec05656bda2b495f2e3")
+          "00f986aa616cc1e55a9392d4e4d227643fedd486")
         (introduction
           (make-channel-introduction
             "257cebd587b66e4d865b3537a9a88cccd7107c95"
@@ -51,5 +51,16 @@
         (introduction
           (make-channel-introduction
             "64d0b70c547095ddc840dd07424b9a46ccc2e64e"
+            (openpgp-fingerprint
+              "C9BE B8A0 4458 FDDF 1268  1B39 029D 8EB7 7E18 D68C"))))
+      (channel
+        (name 'farg)
+        (url "https://github.com/engstrand-config/farg")
+        (branch "main")
+        (commit
+          "f84ffd7d65554a0c4b851ee80547fa8aa7142378")
+        (introduction
+          (make-channel-introduction
+            "f94df02065d8691880dd5414e5c5ad27388d450f"
             (openpgp-fingerprint
               "C9BE B8A0 4458 FDDF 1268  1B39 029D 8EB7 7E18 D68C")))))
