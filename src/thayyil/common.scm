@@ -13,7 +13,7 @@
 
   #:use-module (rde packages)
 
-  #:use-module (luna features networking)
+  #:use-module (thayyil features networking)
 
   #:use-module (thayyil features dwl-guile)
   #:use-module (thayyil features dtao-guile)
