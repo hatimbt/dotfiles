@@ -97,7 +97,10 @@
             %base-system-packages)
     #:home-packages
     (append tycho-home-packages
-            %base-home-packages))))
+            %base-home-packages))
+
+   ;; HiDPI
+   (feature-hidpi)))
 
 ;;;
 ;;; RDE configuration for tycho.
