@@ -4,9 +4,8 @@
   #:use-module (rde features system)
   #:use-module (rde packages)
 
-  #:use-module (thayyil features laptop)
-
   #:use-module (thayyil common)
+  #:use-module (thayyil features laptop)
 
   #:use-module (gnu services)
   #:use-module (gnu packages certs)
@@ -24,7 +23,9 @@
 
   #:use-module (guix gexp))
 
-
+;;;
+;;; LUKS Encryption mapped storage devices
+;;;
 (define tycho-mapped-devices
   (list
    (mapped-device
@@ -32,19 +33,36 @@
     (target "cryptroot")
     (type luks-device-mapping))))
 
+;;;
+;;; Mount points
+;;;
 (define tycho-filesystems
   (list
+   ;; Partition for the root filesystem
    (file-system (mount-point "/")
 		(device "/dev/mapper/cryptroot")
 		(type "btrfs")
 		(dependencies tycho-mapped-devices))
+   ;; EFI Boot parition
    (file-system (mount-point "/boot/efi")
 		(device (uuid "4454-633B" 'fat32))
 		(type "vfat"))))
 
-(define tycho-packages
-  (list git))
+;;;
+;;; Tycho system packages
+;;;
+(define tycho-system-packages
+  '())
 
+;;;
+;;; Tycho home packages
+;;;
+(define tycho-home-packages
+  '())
+
+;;;
+;;; Host features
+;;;
 (define tycho-features
   (list
    ;; Host info
@@ -61,7 +79,7 @@
      (targets (list "/boot/efi"))
      (keyboard-layout "gb")))
 
-   ;; Kernel
+   ;; Full Linux kernel from Nonguix
    (feature-kernel
     #:kernel linux
     #:initrd microcode-initrd
@@ -75,15 +93,21 @@
    ;; Packages
    (feature-base-packages
     #:system-packages
-    (append %base-system-packages)
+    (append tycho-system-packages
+            %base-system-packages)
     #:home-packages
-    (append %base-home-packages
-            tycho-packages))))
+    (append tycho-home-packages
+            %base-home-packages))))
 
+;;;
+;;; RDE configuration for tycho.
+;;;
 (define-public tycho-config
   (rde-config
    (features (append
-	      %base-features
-	      %dev-features
+	      tycho-features
+	      %dev-rust-features
               %thayyil-laptop-base-features
-	      tycho-features))))
+              %emacs-base-features
+              %desktop-base-features
+	      %base-features))))

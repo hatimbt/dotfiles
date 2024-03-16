@@ -39,6 +39,9 @@
 
   #:use-module (guix gexp))
 
+;;;
+;;; Base features
+;;;
 (define-public %base-features
   (list
    ;; User info
@@ -62,12 +65,6 @@
     #:guix-substitute-urls (list "https://bordeaux.guix.gnu.org"
                                  "https://substitutes.nonguix.org")
     #:guix-authorized-keys (list (local-file "../files/nonguix-signing-key.pub")))
-   (feature-desktop-services)
-
-   (feature-dwl-guile)
-   (feature-statusbar-dtao-guile)
-
-   (feature-swaylock)
 
    ;; SSH
    (feature-ssh)
@@ -76,28 +73,8 @@
    (feature-tmux)
    (feature-direnv)
 
-   ;; Audio
-   (feature-pipewire)
-   (feature-pulseaudio-control)
-
-   ;; Emacs
-   (feature-emacs)
-   (feature-emacs-git)
-   (feature-emacs-keycast)
-   (feature-emacs-appearance)
-   (feature-emacs-modus-themes)
-   (feature-emacs-completion)
-   (feature-emacs-evil)
-   (feature-emacs-which-key)
-   (feature-emacs-vertico)
-   (feature-emacs-corfu)
-   (feature-emacs-help)
-   (feature-emacs-pdf-tools)
-
-   (feature-emacs-org)
-
-   (feature-emacs-denote
-    #:denote-directory "~/org")
+   ;; Editor
+   (feature-neovim)
 
    ;; Services
    (feature-custom-services
@@ -109,20 +86,58 @@
 		("nvim", (local-file "../files/nvim" #:recursive? #t))))))))
 
 ;;;
-;;; Development features
+;;; Desktop features
 ;;;
-(define-public %dev-features
+(define-public %desktop-base-features
   (list
-   ;; Neovim
-   (feature-neovim)
-   (feature-neovim-rust)
 
+   (feature-desktop-services)
+   (feature-swaylock)
+   (feature-dwl-guile)
+   (feature-statusbar-dtao-guile)
+
+   ;; Audio
+   (feature-pipewire)
+   (feature-pulseaudio-control)))
+
+;;;
+;;; Emacs base features
+;;;
+(define-public %emacs-base-features
+  (list
+   (feature-emacs)
+   (feature-emacs-git)
+   (feature-emacs-keycast)
+   (feature-emacs-completion)
+   (feature-emacs-evil)
+   (feature-emacs-which-key)
+   (feature-emacs-vertico)
+   (feature-emacs-corfu)
+   (feature-emacs-help)
+
+   ;; UI
+   (feature-emacs-appearance)
+   (feature-emacs-modus-themes)
+
+   ;; Research
+   (feature-emacs-org)
+   (feature-emacs-denote
+    #:denote-directory "~/org")
+   (feature-emacs-pdf-tools)))
+
+;;;
+;;; Rust development features
+;;;
+(define-public %dev-rust-features
+  (list
+   ;; Rust
    (feature-rust)
-   (feature-rust-dev)))
+   (feature-rust-dev)
+   (feature-neovim-rust)))
 
 
 ;;;
-;;; Default packages
+;;; Base home packages
 ;;;
 (define-public %base-home-packages
   (append
@@ -154,5 +169,8 @@
     ;; Editors
     "vscodium")))
 
+;;;
+;;; Base system packages
+;;;
 (define-public %base-system-packages
   '())
