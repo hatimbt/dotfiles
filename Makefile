@@ -3,6 +3,11 @@ HOSTNAME	:=	$(shell cat /etc/hostname)
 NPROCS		:=	$(shell grep -c ^processor /proc/cpuinfo)
 GLP			:=  ./src
 
+repl:
+			guix time-machine -C rde/channels-lock.scm -- \
+			repl \
+			--load-path=$(GLP)
+
 hb:
 	TARGET=${HOSTNAME}-home \
 			guix time-machine -C rde/channels-lock.scm -- \
