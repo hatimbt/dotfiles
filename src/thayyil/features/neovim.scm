@@ -5,9 +5,11 @@
   #:use-module (gnu home services)
   #:use-module (thayyil utils)
   #:use-module (gnu packages vim)
+  #:use-module (gnu packages rust-apps)
   #:use-module (thayyil packages vim)
 
   #:export (feature-neovim)
+  #:export (feature-neovim-telescope)
   #:export (feature-neovim-rust))
 
 (define* (feature-neovim)
@@ -30,7 +32,6 @@
 
        neovim-treesitter
        neovim-tree
-       neovim-telescope
 
        neovim-cmp
        neovim-cmp-buffer
@@ -44,6 +45,23 @@
 
   (feature
    (name 'neovim)
+   (home-services-getter get-home-services)))
+
+(define* (feature-neovim-telescope
+          #:key
+          (fd fd))
+  "Install telescope with ripgrep and fd."
+
+  (define (get-home-services config)
+    "Return a list of home services required for telescope.nvim"
+    (list
+     (simple-service
+      'add-neovim-telescope-packages-to-profile
+      home-profile-service-type
+      (list
+       neovim-telescope ripgrep fd))))
+  (feature
+   (name 'neovim-telescope)
    (home-services-getter get-home-services)))
 
 (define* (feature-neovim-rust)

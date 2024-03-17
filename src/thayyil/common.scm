@@ -132,6 +132,9 @@
 ;;;
 (define-public %dev-rust-features
   (list
+   ;; Neovim
+   (feature-neovim-telescope)
+
    ;; Rust
    (feature-rust)
    (feature-rust-dev)
