@@ -134,6 +134,7 @@
   (list
    ;; Neovim
    (feature-neovim-telescope)
+   (feature-neovim-cmp)
 
    ;; Rust
    (feature-rust)

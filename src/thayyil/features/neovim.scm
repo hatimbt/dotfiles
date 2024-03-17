@@ -10,6 +10,7 @@
 
   #:export (feature-neovim)
   #:export (feature-neovim-telescope)
+  #:export (feature-neovim-cmp)
   #:export (feature-neovim-rust))
 
 (define* (feature-neovim)
@@ -32,11 +33,6 @@
 
        neovim-treesitter
        neovim-tree
-
-       neovim-cmp
-       neovim-cmp-buffer
-       neovim-cmp-path
-       neovim-cmp-lsp
 
        neovim-luasnip
        neovim-cmp-luasnip
@@ -62,6 +58,25 @@
        neovim-telescope ripgrep fd))))
   (feature
    (name 'neovim-telescope)
+   (home-services-getter get-home-services)))
+
+(define* (feature-neovim-cmp)
+  "Install nvim-cmp with buffer and path sources."
+
+  (define (get-home-services config)
+    "Return a list of home services required for nvim-cmp"
+    (list
+     (simple-service
+      'add-neovim-cmp-packages-to-profile
+      home-profile-service-type
+      (list
+       neovim-cmp
+       neovim-cmp-buffer
+       neovim-cmp-path
+       neovim-cmp-lsp))))
+
+  (feature
+   (name 'neovim-cmp)
    (home-services-getter get-home-services)))
 
 (define* (feature-neovim-rust)
