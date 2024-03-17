@@ -53,6 +53,7 @@
       home-profile-service-type
       (list
        neovim-telescope ripgrep fd))))
+
   (feature
    (name 'neovim-telescope)
    (home-services-getter get-home-services)))
@@ -110,15 +111,15 @@ source"
    (home-services-getter get-home-services)))
 
 (define* (feature-neovim-rust)
+  "Install Neovim rustaceanvim."
+
   (define (get-home-services config)
     (list
      (simple-service
-      'rust-dev-add-packages
+      'add-neovim-rustaceanvim-packages-to-profile
       home-profile-service-type
-      (list
-       neovim-rustaceanvim
-       ))
-     ))
+      (list neovim-rustaceanvim))))
+
   (feature
    (name 'neovim-rust)
    (values `((neovim-rust . #t)))
