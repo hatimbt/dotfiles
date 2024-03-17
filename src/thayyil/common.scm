@@ -135,6 +135,8 @@
    ;; Neovim
    (feature-neovim-telescope)
    (feature-neovim-cmp)
+   (feature-neovim-cmp-luasnip)
+   (feature-neovim-friendly-snippets)
 
    ;; Rust
    (feature-rust)

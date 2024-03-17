@@ -11,6 +11,8 @@
   #:export (feature-neovim)
   #:export (feature-neovim-telescope)
   #:export (feature-neovim-cmp)
+  #:export (feature-neovim-cmp-luasnip)
+  #:export (feature-neovim-friendly-snippets)
   #:export (feature-neovim-rust))
 
 (define* (feature-neovim)
@@ -32,12 +34,7 @@
        neovim-lspconfig
 
        neovim-treesitter
-       neovim-tree
-
-       neovim-luasnip
-       neovim-cmp-luasnip
-       neovim-friendly-snippets
-       ))))
+       neovim-tree))))
 
   (feature
    (name 'neovim)
@@ -77,6 +74,39 @@
 
   (feature
    (name 'neovim-cmp)
+   (home-services-getter get-home-services)))
+
+(define* (feature-neovim-cmp-luasnip)
+  "Install nvim-luasnip and nvim-cmp-luasnip completion source."
+
+  (define (get-home-services config)
+    "Return a list of home services required for nvim-cmp luasnip completion
+source"
+    (list
+     (simple-service
+      'add-neovim-cmp-luasnip-packages-to-profile
+      home-profile-service-type
+      (list
+       neovim-luasnip
+       neovim-cmp-luasnip))))
+
+  (feature
+   (name 'neovim-cmp-luasnip)
+   (home-services-getter get-home-services)))
+
+(define* (feature-neovim-friendly-snippets)
+  "Install Neovim friendly-snippets."
+
+  (define (get-home-services config)
+    "Return a list of home services required for friendly snippets"
+    (list
+     (simple-service
+      'add-neovim-friendly-snippets-packages-to-profile
+      home-profile-service-type
+      (list neovim-friendly-snippets))))
+
+  (feature
+   (name 'neovim-friendly-snippets)
    (home-services-getter get-home-services)))
 
 (define* (feature-neovim-rust)
