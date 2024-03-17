@@ -26,18 +26,24 @@ hbl:
 			home build \
 			--load-path=$(GLP) --cores=$(NPROCS) $(CONFIG_FILE)
 
-hcl:
-	TARGET=${HOSTNAME}-home \
-			guix time-machine -C rde/channels-local-lock.scm -- \
-			home container \
-			--load-path=$(GLP) --cores=$(NPROCS) $(CONFIG_FILE)
-			
 sbl:
 	TARGET=${HOSTNAME}-system \
 			guix time-machine -C rde/channels-local-lock.scm -- \
 			system build \
 			--load-path=$(GLP) --cores=$(NPROCS) $(CONFIG_FILE)
 
+hc:
+	TARGET=${HOSTNAME}-home \
+			guix time-machine -C rde/channels-lock.scm -- \
+			home container \
+			--load-path=$(GLP) --cores=$(NPROCS) $(CONFIG_FILE)
+			
+hcl:
+	TARGET=${HOSTNAME}-home \
+			guix time-machine -C rde/channels-local-lock.scm -- \
+			home container \
+			--load-path=$(GLP) --cores=$(NPROCS) $(CONFIG_FILE)
+			
 hr:
 	TARGET=${HOSTNAME}-home \
 			guix time-machine -C rde/channels-lock.scm -- \
