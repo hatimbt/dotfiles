@@ -22,6 +22,7 @@
   #:use-module (thayyil packages vim)
   #:use-module (thayyil features neovim)
   #:use-module (thayyil features rust)
+  #:use-module (thayyil features tree-sitter)
 
   #:use-module (gnu services)
   #:use-module (gnu packages certs)
@@ -137,6 +138,9 @@
    (feature-neovim-cmp)
    (feature-neovim-cmp-luasnip)
    (feature-neovim-friendly-snippets)
+
+   ;; Tree-sitter
+   (feature-tree-sitter)
 
    ;; Rust
    (feature-rust)
