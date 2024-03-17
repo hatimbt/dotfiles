@@ -96,6 +96,7 @@
    (feature-statusbar-dtao-guile)
    (feature-swayidle)
    (feature-swaylock)
+   (feature-batsignal)
 
    ;; Audio
    (feature-pipewire)
