@@ -92,9 +92,10 @@
   (list
 
    (feature-desktop-services)
-   (feature-swaylock)
    (feature-dwl-guile)
    (feature-statusbar-dtao-guile)
+   (feature-swayidle)
+   (feature-swaylock)
 
    ;; Audio
    (feature-pipewire)
