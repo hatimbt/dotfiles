@@ -16,6 +16,7 @@
 
   #:use-module (thayyil features networking)
 
+  #:use-module (thayyil features shells)
   #:use-module (thayyil features dwl-guile)
   #:use-module (thayyil features dtao-guile)
   #:use-module (thayyil features laptop)
@@ -73,6 +74,7 @@
 
    ;; Shell
    (feature-bash)
+   (feature-zsh)
    (feature-tmux)
    (feature-direnv)
 
