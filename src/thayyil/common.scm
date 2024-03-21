@@ -3,6 +3,7 @@
   #:use-module (rde features base)
   #:use-module (rde features ssh)
   #:use-module (rde features keyboard)
+  #:use-module (rde features shells)
   #:use-module (rde features linux)
   #:use-module (rde features shellutils)
   #:use-module (rde features wm)
@@ -71,6 +72,7 @@
    (feature-ssh)
 
    ;; Shell
+   (feature-bash)
    (feature-tmux)
    (feature-direnv)
 
