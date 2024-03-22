@@ -58,7 +58,9 @@
    ;; Keyboard layout
    (feature-keyboard
     #:keyboard-layout
-    (keyboard-layout "gb"))
+    (keyboard-layout
+     "gb"
+     #:options '("ctrl:nocaps")))
 
    ;; Networking
    (feature-networking)
