@@ -3,7 +3,7 @@
         (url "https://git.savannah.gnu.org/git/guix.git")
         (branch "master")
         (commit
-          "93aefca7bab5f5b40164176e3224221d26d708f1")
+          "28bc0e870b4d48b8e3e773382bb0e999df2e3611")
         (introduction
           (make-channel-introduction
             "9edb3f66fd807b096b48283debdcddccfea34bad"
@@ -11,48 +11,28 @@
               "BBB0 2DDF 2CEA F6A8 0D1D  E643 A2A0 6DF2 A33A 54FA"))))
       (channel
         (name 'nonguix)
-        (url "https://gitlab.com/nonguix/nonguix")
+        (url "file:///home/hatim/src/guile/nonguix")
         (branch "master")
         (commit
-          "8b130114d6998ef4ad1c54ad17ee2d783af51c2f")
-        (introduction
-          (make-channel-introduction
-            "897c1a470da759236cc11798f4e0a5f7d4d59fbc"
-            (openpgp-fingerprint
-              "2A39 3FFF 68F4 EF7A 3D29  12AF 6F51 20A0 22FB B2D5"))))
+          "a4356defe7d4ee9b0ac6789d67f94d00714a9409"))
       (channel
         (name 'rde)
-        (url "https://git.sr.ht/~abcdw/rde")
+        (url "file:///home/hatim/src/guile/rde")
         (branch "master")
         (commit
-          "00f986aa616cc1e55a9392d4e4d227643fedd486")
-        (introduction
-          (make-channel-introduction
-            "257cebd587b66e4d865b3537a9a88cccd7107c95"
-            (openpgp-fingerprint
-              "2841 9AC6 5038 7440 C7E9  2FFA 2208 D209 58C1 DEB0"))))
+          "3344ce422f1c3d6f3e43815bbca76992a0aa8e0a"))
       (channel
         (name 'home-service-dwl-guile)
-        (url "https://github.com/engstrand-config/home-service-dwl-guile")
-        (branch "main")
+        (url "file:///home/hatim/src/guile/home-service-dwl-guile")
+        (branch "local")
         (commit
-          "09045a658a17a914d1bda4d23c04d99c40a1d63b")
-        (introduction
-          (make-channel-introduction
-            "314453a87634d67e914cfdf51d357638902dd9fe"
-            (openpgp-fingerprint
-              "C9BE B8A0 4458 FDDF 1268  1B39 029D 8EB7 7E18 D68C"))))
+          "b242680651aff4a9c3b7f1e0ec8364d599b931c6"))
       (channel
         (name 'home-service-dtao-guile)
-        (url "https://github.com/engstrand-config/home-service-dtao-guile")
-        (branch "main")
+        (url "file:///home/hatim/src/guile/home-service-dtao-guile")
+        (branch "local")
         (commit
-          "ad32455058d588452519edf49f761eb298c9e9bd")
-        (introduction
-          (make-channel-introduction
-            "64d0b70c547095ddc840dd07424b9a46ccc2e64e"
-            (openpgp-fingerprint
-              "C9BE B8A0 4458 FDDF 1268  1B39 029D 8EB7 7E18 D68C"))))
+          "dd0928d2012311f65b323e521a1e8b582ffdaec1"))
       (channel
         (name 'farg)
         (url "https://github.com/engstrand-config/farg")
