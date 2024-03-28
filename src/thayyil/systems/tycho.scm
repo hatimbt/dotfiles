@@ -7,6 +7,8 @@
 
   #:use-module (thayyil common)
   #:use-module (thayyil features laptop)
+  #:use-module (thayyil features display)
+
 
   #:use-module (gnu services)
   #:use-module (gnu packages certs)
