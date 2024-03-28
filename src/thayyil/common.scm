@@ -17,6 +17,7 @@
   #:use-module (thayyil features networking)
 
   #:use-module (thayyil features shells)
+  #:use-module (thayyil features terminals)
   #:use-module (thayyil features dwl-guile)
   #:use-module (thayyil features dtao-guile)
   #:use-module (thayyil features laptop)
@@ -105,6 +106,9 @@
    (feature-swaylock)
    (feature-batsignal)
 
+   ;; Terminals
+   (feature-foot)
+
    ;; Audio
    (feature-pipewire)
    (feature-pulseaudio-control)))
@@ -172,7 +176,7 @@
     "bemenu" "localed" "wl-clipboard" "wl-clipboard-x11"
 
     ;; Terminals
-    "st" "foot"
+    "st"
 
     ;; Dev Utils
     "just"
