@@ -404,3 +404,23 @@ standard for color contrast between background and foreground values (WCAG AAA).
 A Neovim port of the original Modus Themes built for GNU Emacs.")
      (description "")
      (license license:gpl3)))
+
+(define-public neovim-registers
+    (package
+     (name "neovim-registers")
+     (version "2.3.0")
+     (source
+      (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/tversteeg/registers.nvim")
+             (commit (string-append "v" version))))
+       (sha256
+        (base32 "08mg2rjbvyrgj5l1j3nzv7iwfsvm0wx5838lgk95zqb151sas4r7"))))
+     (build-system vim-build-system)
+     (arguments
+      (list #:plugin-name "registers.nvim"))
+     (home-page "https://github.com/tversteeg/registers.nvim")
+     (synopsis "Neovim plugin to preview the contents of the registers")
+     (description "This Neovim plugin adds an interactive and visually pleasing UI for selecting what register item to paste or use next. ")
+     (license license:gpl3)))
