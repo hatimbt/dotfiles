@@ -20,3 +20,10 @@ vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
 vim.keymap.set('n', '<leader>ft', builtin.lsp_type_definitions, {})
 vim.keymap.set('n', '<leader>fd', builtin.lsp_definitions, {})
 vim.keymap.set('n', '<leader>fr', builtin.lsp_references, {})
+
+-- Remap clipboards using registers
+vim.keymap.set({'n', 'v'}, '<leader>y', '"+y', {})
+vim.keymap.set({'n', 'v'}, '<leader>p', '"+p', {})
+vim.keymap.set({'n', 'v'}, '<leader>P', '"+P', {})
+-- Yank towards end of line
+vim.keymap.set('n', '<leader>Y', '"+yg_', {})
