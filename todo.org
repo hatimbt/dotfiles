@@ -1,0 +1,20 @@
+#+title: Todos for Guix
+#+author: Hatim Thayyil
+
+* TODO Neovim
+
+** TODO Add =conjure= to packages
+Conjure allows Geiser-like functionality on neovim.
+
+** TODO Add keybindings for =telescope=
+
+*** Git views
+
+*** Search field to not have vim bindings (have to press Escape twice)
+https://www.reddit.com/r/neovim/comments/pzxw8h/telescope_quit_on_first_single_esc/
+
+* TODO Keyboard
+
+** TODO Add keybinding to map Escape into Caps Lock using =xcape=.
+
+* TODO
