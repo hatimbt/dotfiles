@@ -37,6 +37,7 @@
   #:use-module (gnu system mapped-devices)
 
   #:use-module (gnu home services)
+  #:use-module (gnu home services shells)
 
   #:use-module (nongnu packages linux)
   #:use-module (nongnu system linux-initrd)
@@ -173,7 +174,7 @@
     "bind"
 
     ;; Desktop
-    "bemenu" "localed" "wl-clipboard" "wl-clipboard-x11"
+    "bemenu" "localed" "wl-clipboard" "wl-clipboard-x11" "xcape"
 
     ;; Terminals
     "st"
