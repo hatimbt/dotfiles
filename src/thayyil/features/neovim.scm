@@ -30,6 +30,8 @@
 
        neovim-lualine
 
+       neovim-registers
+
        neovim-lsp-zero
        neovim-lspconfig
 
