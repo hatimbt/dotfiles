@@ -71,6 +71,9 @@ srl:
 cp:
 	guix pull -C rde/channels-lock.scm
 
+cpl:
+	guix pull -C rde/channels-local-lock.scm
+
 culock:
 	guix time-machine -C rde/channels.scm -- \
 	describe -f channels > rde/channels-lock.scm
