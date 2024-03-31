@@ -26,6 +26,7 @@
   #:use-module (thayyil features neovim)
   #:use-module (thayyil features rust)
   #:use-module (thayyil features tree-sitter)
+  #:use-module (thayyil features keyboard)
 
   #:use-module (gnu services)
   #:use-module (gnu packages certs)
@@ -63,6 +64,8 @@
     (keyboard-layout
      "gb"
      #:options '("ctrl:nocaps")))
+   (feature-dual-function-keys
+    #:dev-node "by-path/platform-i8042-serio-0-event-kbd")
 
    ;; Networking
    (feature-networking)
