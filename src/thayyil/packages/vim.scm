@@ -445,3 +445,27 @@ A Neovim port of the original Modus Themes built for GNU Emacs.")
      (description "")
      (license license:expat)))
 
+(define-public neovim-neo-tree
+    (package
+     (name "neovim-neo-tree")
+     (version "3.23")
+     (source
+      (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/nvim-neo-tree/neo-tree.nvim")
+             (commit version)))
+       (sha256
+        (base32 "0imgbzf9k98az077zqscf82iilf5rlkawxci2c1p3djb3nf8h43m"))))
+     (build-system vim-build-system)
+     (arguments
+      (list #:plugin-name "neo-tree.nvim"))
+     (propagated-inputs (list neovim-nui))
+     (home-page "https://github.com/nvim-neo-tree/neo-tree.nvim")
+     (synopsis "Neovim plugin to manage the file system and other tree like
+structures")
+     (description "Neo-tree is a Neovim plugin to browse the file system and
+other tree like structures in whatever style suits you, including sidebars,
+floating windows, netrw split style, or all of them at once!")
+     (license license:expat)))
+
