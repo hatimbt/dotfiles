@@ -321,9 +321,9 @@ sources are installed from external repositories and 'sourced'.")
      (description "")
      (license license:expat)))
 
-(define-public neovim-tree
+(define-public neovim-nvim-tree
     (package
-     (name "neovim-tree")
+     (name "neovim-nvim-tree")
      (version "1.0")
      (source
       (origin
@@ -335,9 +335,9 @@ sources are installed from external repositories and 'sourced'.")
         (base32 "099s38w11r9i38338l03ash294a48kq9p9cyjijs6w02drzmnbb2"))))
      (build-system vim-build-system)
      (arguments
-      (list #:plugin-name "nvim_tree"))
+      (list #:plugin-name "nvim-tree"))
      (home-page "https://github.com/nvim-tree/nvim-tree.lua")
-     (synopsis "A file explorer tree for neovim written in lua.")
+     (synopsis "A file explorer tree for neovim written in lua")
      (description "")
      (license license:gpl3+)))
 
