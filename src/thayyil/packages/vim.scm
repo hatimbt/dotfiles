@@ -424,3 +424,24 @@ A Neovim port of the original Modus Themes built for GNU Emacs.")
      (synopsis "Neovim plugin to preview the contents of the registers")
      (description "This Neovim plugin adds an interactive and visually pleasing UI for selecting what register item to paste or use next. ")
      (license license:gpl3)))
+
+(define-public neovim-nui
+    (package
+     (name "neovim-nui")
+     (version "0.3.0")
+     (source
+      (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/MunifTanjim/nui.nvim")
+             (commit version)))
+       (sha256
+        (base32 "0fjrnhfhq7sn3am7283adar0jlf6gcyq303kxkwqvxzvvdg9nirg"))))
+     (build-system vim-build-system)
+     (arguments
+      (list #:plugin-name "nui.nvim"))
+     (home-page "https://github.com/MunifTanjim/nui.nvim")
+     (synopsis "UI Component Library for Neovim")
+     (description "")
+     (license license:expat)))
+
