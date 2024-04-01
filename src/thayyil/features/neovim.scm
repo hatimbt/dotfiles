@@ -35,8 +35,7 @@
        neovim-lsp-zero
        neovim-lspconfig
 
-       neovim-treesitter
-       neovim-tree))))
+       neovim-treesitter))))
 
   (feature
    (name 'neovim)
