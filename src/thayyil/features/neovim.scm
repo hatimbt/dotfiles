@@ -9,6 +9,7 @@
   #:use-module (thayyil packages vim)
 
   #:export (feature-neovim)
+  #:export (feature-neovim-neo-tree)
   #:export (feature-neovim-telescope)
   #:export (feature-neovim-cmp)
   #:export (feature-neovim-cmp-luasnip)
@@ -124,4 +125,19 @@ source"
   (feature
    (name 'neovim-rust)
    (values `((neovim-rust . #t)))
+   (home-services-getter get-home-services)))
+
+(define* (feature-neovim-neo-tree)
+  "Install and setup Neo-tree."
+
+  (define (get-home-services config)
+    "Return a list of home services required for Neovim"
+    (list
+     (simple-service
+      'add-neovim-home-packages-to-profile
+      home-profile-service-type
+      (list neovim-neo-tree))))
+
+  (feature
+   (name 'neovim-neo-tree)
    (home-services-getter get-home-services)))
