@@ -460,7 +460,7 @@ A Neovim port of the original Modus Themes built for GNU Emacs.")
      (build-system vim-build-system)
      (arguments
       (list #:plugin-name "neo-tree.nvim"))
-     (propagated-inputs (list neovim-nui))
+     (propagated-inputs (list neovim-plenary neovim-nui))
      (home-page "https://github.com/nvim-neo-tree/neo-tree.nvim")
      (synopsis "Neovim plugin to manage the file system and other tree like
 structures")
