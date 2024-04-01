@@ -151,6 +151,7 @@
 (define-public %dev-rust-features
   (list
    ;; Neovim
+   (feature-neovim-neo-tree)
    (feature-neovim-telescope)
    (feature-neovim-cmp)
    (feature-neovim-cmp-luasnip)
