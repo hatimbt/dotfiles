@@ -469,3 +469,24 @@ other tree like structures in whatever style suits you, including sidebars,
 floating windows, netrw split style, or all of them at once!")
      (license license:expat)))
 
+(define-public neovim-web-devicons
+  (let ((commit "3ee60deaa539360518eaab93a6c701fe9f4d82ef")
+        (revision "0"))
+    (package
+     (name "neovim-web-devicons")
+     (version (git-version "0" revision commit))
+     (source
+      (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/nvim-tree/nvim-web-devicons")
+             (commit commit)))
+       (sha256
+        (base32 "1a0z8canxpr5vlnmkqpys35yar8l296gdznqlvvvf1200wai3i8v"))))
+     (build-system vim-build-system)
+     (arguments
+      (list #:plugin-name "nvim-web-devicons"))
+     (home-page "https://github.com/nvim-tree/nvim-web-devicons")
+     (synopsis "Adds file type icons to Vim plugins")
+     (description "")
+     (license license:expat))))
