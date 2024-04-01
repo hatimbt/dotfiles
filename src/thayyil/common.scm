@@ -12,6 +12,9 @@
   #:use-module (contrib features emacs-xyz)
   #:use-module (rde features tmux)
 
+  ;; Fonts
+  #:use-module (rde packages fonts)
+
   #:use-module (rde packages)
 
   #:use-module (thayyil features networking)
@@ -181,6 +184,9 @@
 
     ;; Terminals
     "st"
+
+    ;; Font
+    "font-iosevka-nerd"
 
     ;; Dev Utils
     "just"
