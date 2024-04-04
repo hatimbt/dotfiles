@@ -34,6 +34,7 @@
        neovim-lualine
 
        neovim-fidget
+       neovim-gitsigns
        neovim-registers
 
        neovim-lsp-zero
