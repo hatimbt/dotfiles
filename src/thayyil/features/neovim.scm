@@ -28,6 +28,7 @@
       (list
        neovim
        neovim-modus-themes
+       neovim-catppuccin
        neovim-web-devicons
 
        neovim-lualine
