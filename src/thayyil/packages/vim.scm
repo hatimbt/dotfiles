@@ -530,3 +530,23 @@ floating windows, netrw split style, or all of them at once!")
      (synopsis "Extensible UI for Neovim notifications and LSP progress messages")
      (description "")
      (license license:expat)))
+
+(define-public neovim-gitsigns
+    (package
+     (name "neovim-gitsigns")
+     (version "0.7")
+     (source
+      (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/lewis6991/gitsigns.nvim")
+             (commit (string-append "v" version))))
+       (sha256
+        (base32 "086jmhzgpavwjvp7ssd8ga0wxgnz480zzjiv84h4ivva2nv3lnvi"))))
+     (build-system vim-build-system)
+     (arguments
+      (list #:plugin-name "gitsigns.nvim"))
+     (home-page "https://github.com/lewis6991/gitsigns.nvim")
+     (synopsis "Git integration for buffers ")
+     (description "")
+     (license license:expat)))
