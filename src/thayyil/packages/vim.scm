@@ -510,3 +510,23 @@ floating windows, netrw split style, or all of them at once!")
      (synopsis "Soothing pastel theme for (Neo)vim")
      (description "")
      (license license:expat)))
+
+(define-public neovim-fidget
+    (package
+     (name "neovim-fidget")
+     (version "1.4.0")
+     (source
+      (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/j-hui/fidget.nvim")
+             (commit (string-append "v" version))))
+       (sha256
+        (base32 "1519w7hb5xh1cgpcgi323if1wiq6n0vyfilza1wqpbbk6801rlfy"))))
+     (build-system vim-build-system)
+     (arguments
+      (list #:plugin-name "fidget.nvim"))
+     (home-page "https://github.com/j-hui/fidget.nvim")
+     (synopsis "Extensible UI for Neovim notifications and LSP progress messages")
+     (description "")
+     (license license:expat)))
