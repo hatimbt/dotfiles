@@ -13,6 +13,7 @@
   #:use-module (rde features tmux)
 
   ;; Fonts
+  #:use-module (rde features fontutils)
   #:use-module (rde packages fonts)
 
   #:use-module (rde packages)
