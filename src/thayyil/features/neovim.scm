@@ -33,6 +33,7 @@
 
        neovim-lualine
 
+       neovim-fidget
        neovim-registers
 
        neovim-lsp-zero
