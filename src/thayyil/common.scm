@@ -97,7 +97,7 @@
     (list
      (service home-xdg-configuration-files-service-type
 	      `(("git/config", (local-file "../files/git/config"))
-		("tmux/tmux.conf", (local-file "../files/tmux.conf"))
+		("tmux", (local-file "../files/tmux" #:recursive? #t))
 		("nvim", (local-file "../files/nvim" #:recursive? #t))))))))
 
 ;;;
