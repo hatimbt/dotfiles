@@ -490,3 +490,23 @@ floating windows, netrw split style, or all of them at once!")
      (synopsis "Adds file type icons to Vim plugins")
      (description "")
      (license license:expat))))
+
+(define-public neovim-catppuccin
+    (package
+     (name "neovim-catppuccin")
+     (version "1.6.0")
+     (source
+      (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/catppuccin/nvim")
+             (commit (string-append "v" version))))
+       (sha256
+        (base32 "1ay7cgfph2l8b5h993r94akbzgxzqfkl8cnk2m9535vbrm6vxxyx"))))
+     (build-system vim-build-system)
+     (arguments
+      (list #:plugin-name "catppuccin"))
+     (home-page "https://catppuccin.com/")
+     (synopsis "Soothing pastel theme for (Neo)vim")
+     (description "")
+     (license license:expat)))
