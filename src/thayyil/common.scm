@@ -30,6 +30,7 @@
   #:use-module (thayyil features rust)
   #:use-module (thayyil features tree-sitter)
   #:use-module (thayyil features keyboard)
+  #:use-module (thayyil features tmux)
 
   #:use-module (gnu services)
   #:use-module (gnu packages certs)
@@ -85,8 +86,11 @@
    ;; Shell
    (feature-bash)
    (feature-zsh)
-   (feature-tmux)
    (feature-direnv)
+
+   ;; Tmux
+   (feature-tmux)
+   (feature-tmux-catppuccin)
 
    ;; Editor
    (feature-neovim)
