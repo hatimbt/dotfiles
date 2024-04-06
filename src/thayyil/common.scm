@@ -110,7 +110,6 @@
 ;;;
 (define-public %desktop-base-features
   (list
-
    (feature-desktop-services)
    (feature-dwl-guile)
    (feature-statusbar-dtao-guile)
