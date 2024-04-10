@@ -2,7 +2,7 @@
 
 
 -- Colourscheme
-vim.cmd.colorscheme('modus')
+vim.cmd.colorscheme('catppuccin-mocha')
 
 -- Shell to use for `!` and `:!` commands.
 vim.o.shell = '/bin/bash'
