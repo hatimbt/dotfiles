@@ -1,5 +1,6 @@
 (define-module (thayyil packages vim)
   #:use-module ((guix licenses) #:prefix license:)
+  #:use-module (nonguix licenses)
   #:use-module (guix gexp)
   #:use-module (guix packages)
   #:use-module (guix git-download)
@@ -550,3 +551,23 @@ floating windows, netrw split style, or all of them at once!")
      (synopsis "Git integration for buffers ")
      (description "")
      (license license:expat)))
+
+(define-public neovim-barbar
+    (package
+     (name "neovim-barbar")
+     (version "1.7.0")
+     (source
+      (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/romgrk/barbar.nvim")
+             (commit (string-append "v" version))))
+       (sha256
+        (base32 "0hbfi5876s8zfghlgxqb187cgp3ssarnaapg5n636zyv6m4wyiii"))))
+     (build-system vim-build-system)
+     (arguments
+      (list #:plugin-name "barbar.nvim"))
+     (home-page "https://github.com/romgrk/barbar.nvim")
+     (synopsis "A neovim tabline plugin")
+     (description "")
+     (license (nonfree "https://www.json.org/license.html"))))
