@@ -34,6 +34,7 @@
        neovim-lualine
 
        neovim-fidget
+       neovim-barbar
        neovim-gitsigns
        neovim-registers
 
