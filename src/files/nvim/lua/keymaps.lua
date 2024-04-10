@@ -27,3 +27,6 @@ vim.keymap.set({'n', 'v'}, '<leader>p', '"+p', {})
 vim.keymap.set({'n', 'v'}, '<leader>P', '"+P', {})
 -- Yank towards end of line
 vim.keymap.set('n', '<leader>Y', '"+yg_', {})
+
+vim.keymap.set('n', 'K', vim.lsp.buf.hover, { silent = true, noremap = true })
+vim.keymap.set({ 'n', 'i' }, '<C-k>', vim.lsp.buf.signature_help, { silent = true, noremap = true })
