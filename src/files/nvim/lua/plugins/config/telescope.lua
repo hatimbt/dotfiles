@@ -20,4 +20,5 @@ vim.keymap.set('n', '<leader>ft', builtin.lsp_type_definitions, {})
 vim.keymap.set('n', '<leader>fd', builtin.lsp_definitions, {})
 vim.keymap.set('n', '<leader>fr', builtin.lsp_references, {})
 vim.keymap.set('n', '<leader>b', builtin.buffers, {})
+vim.keymap.set('n', '<leader>k', builtin.keymaps, {})
 
