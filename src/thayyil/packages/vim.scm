@@ -591,3 +591,24 @@ floating windows, netrw split style, or all of them at once!")
      (synopsis "Promise & Async in Lua")
      (description "")
      (license license:bsd-3)))
+
+(define-public neovim-ufo
+    (package
+     (name "neovim-ufo")
+     (version "1.4.0")
+     (source
+      (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/kevinhwang91/nvim-ufo")
+             (commit (string-append "v" version))))
+       (sha256
+        (base32 "0fyc504ay04402gk1vly0lz8fa5yyfmix16zsvl29grw6rpjacvp"))))
+     (build-system vim-build-system)
+     (arguments
+      (list #:plugin-name "nvim-ufo"))
+     (propagated-inputs (list neovim-promise-async))
+     (home-page "https://github.com/kevinhwang91/nvim-ufo")
+     (synopsis "Neovim plugin for folding")
+     (description "")
+     (license license:bsd-3)))
