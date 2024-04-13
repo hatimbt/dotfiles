@@ -37,6 +37,7 @@
        neovim-barbar
        neovim-gitsigns
        neovim-registers
+       neovim-ufo
 
        neovim-lsp-zero
        neovim-lspconfig
