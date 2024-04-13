@@ -571,3 +571,23 @@ floating windows, netrw split style, or all of them at once!")
      (synopsis "A neovim tabline plugin")
      (description "")
      (license (nonfree "https://www.json.org/license.html"))))
+
+(define-public neovim-promise-async
+    (package
+     (name "neovim-promise-async")
+     (version "1.0.0")
+     (source
+      (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/kevinhwang91/promise-async")
+             (commit (string-append "v" version))))
+       (sha256
+        (base32 "19kyjzjvlj0c5w3d7r7pfrd5w5w2jv10y4xahiy4iyxa1qz50vsp"))))
+     (build-system vim-build-system)
+     (arguments
+      (list #:plugin-name "promise-async"))
+     (home-page "https://github.com/kevinhwang91/promise-async")
+     (synopsis "Promise & Async in Lua")
+     (description "")
+     (license license:bsd-3)))
