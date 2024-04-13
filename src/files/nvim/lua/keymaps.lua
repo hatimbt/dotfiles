@@ -29,3 +29,6 @@ vim.keymap.set("n", "-", [[<cmd>vertical resize -5<cr>]])
 vim.keymap.set("n", "+", [[<cmd>horizontal resize +2<cr>]]) 
 -- make the window smaller horizontally by pressing shift and -
 vim.keymap.set("n", "_", [[<cmd>horizontal resize -2<cr>]])
+
+-- Toggle folds
+vim.keymap.set("n", "f", "za")
