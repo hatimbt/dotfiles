@@ -15,6 +15,7 @@ vim.g.rustaceanvim = {
 ---
 local cmp = require('cmp')
 local cmp_action = lsp_zero.cmp_action()
+local cmp_format = require('lsp-zero').cmp_format({details = true})
 
 cmp.setup({
   mapping = cmp.mapping.preset.insert({
@@ -31,5 +32,17 @@ cmp.setup({
     -- Scroll up and down in the completion documentation
     ['<C-u>'] = cmp.mapping.scroll_docs(-4),
     ['<C-d>'] = cmp.mapping.scroll_docs(4),
-  })
+  }),
+  sources = {
+    {name = 'nvim_lsp'},
+    {name = 'buffer'},
+    {name = 'luasnip'},
+  },
+  snippet = {
+    expand = function(args)
+      require('luasnip').lsp_expand(args.body)
+    end,
+  },
+  --- Show source name in completion menu
+  formatting = cmp_format,
 })
