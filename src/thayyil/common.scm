@@ -130,24 +130,55 @@
 (define-public %emacs-base-features
   (list
    (feature-emacs)
-   (feature-emacs-git)
-   (feature-emacs-keycast)
-   (feature-emacs-completion)
    (feature-emacs-evil)
    (feature-emacs-which-key)
-   (feature-emacs-vertico)
-   (feature-emacs-corfu)
-   (feature-emacs-help)
+   (feature-emacs-keycast)
 
    ;; UI
    (feature-emacs-appearance)
    (feature-emacs-modus-themes)
+   (feature-emacs-circadian)
+   (feature-emacs-all-the-icons)
+
+   ;; Generic
+   (feature-emacs-eshell)
+   (feature-emacs-re-builder) ;; Interactive Regex builder
+   (feature-emacs-comint)
+   (feature-emacs-help)
+
+   ;; Completion
+   (feature-emacs-completion)
+   (feature-emacs-vertico)
+   (feature-emacs-corfu)
+
+   ;; Focus
+   (feature-emacs-monocle) ;; Sets up olivetti for distraction free reading/writing
+   (feature-emacs-project)
+
+   ;; Development
+   (feature-emacs-eglot)
+   (feature-emacs-git)
+   (feature-emacs-geiser)
+   (feature-emacs-guix)
 
    ;; Research
    (feature-emacs-org)
+   (feature-emacs-org-agenda)
+   (feature-emacs-org-roam
+    #:org-roam-directory "~/documents/roam")
    (feature-emacs-denote
-    #:denote-directory "~/org")
-   (feature-emacs-pdf-tools)))
+    #:denote-directory "~/documents/denote")
+   (feature-emacs-citation
+    #:global-bibliography (list "~/documents/bib/references.bib"))
+   (feature-emacs-pdf-tools)
+   (feature-emacs-elfeed
+    #:elfeed-org-files (list "~/documents/rss.org"))
+
+   ;; Communication
+   (feature-emacs-telega)
+   (feature-emacs-ebdb
+    #:ebdb-sources (list "~/documents/contacts")
+    #:ebdb-popup-size 0.2)))
 
 ;;;
 ;;; Rust development features
