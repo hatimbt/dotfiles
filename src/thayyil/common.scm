@@ -165,9 +165,17 @@
    (feature-emacs-org)
    (feature-emacs-org-agenda)
    (feature-emacs-org-roam
-    #:org-roam-directory "~/documents/roam")
+    #:org-roam-directory "~/documents/notes"
+    ;; Use Denote's naming scheme for org-roam
+    ;; https://baty.net/2023/08/using-both-denote-and-org-roam
+    #:org-roam-capture-templates
+    '(("d" "default" plain "%?"
+       :target
+       (file+head "%<%Y%m%dT%H%M%S>--${slug}.org" ":PROPERTIES:\n:ID:          %<%Y%m%dT%H%M%S>\n:END:\n#+title:      ${title}\n#+date:       [%<%Y-%m-%d %a %H:%S>]\n#+filetags: \n#+identifier: %<%Y%m%dT%H%M%S>\n\n")
+       :immediate-finish t
+       :unnarrowed t)))
    (feature-emacs-denote
-    #:denote-directory "~/documents/denote")
+    #:denote-directory "~/documents/notes")
    (feature-emacs-citation
     #:global-bibliography (list "~/documents/bib/references.bib"))
    (feature-emacs-pdf-tools)
