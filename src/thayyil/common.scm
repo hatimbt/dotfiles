@@ -48,7 +48,8 @@
   #:use-module (nongnu packages linux)
   #:use-module (nongnu system linux-initrd)
 
-  #:use-module (guix gexp))
+  #:use-module (guix gexp)
+  #:export(%base-home-packages))
 
 ;;;
 ;;; Base features
@@ -212,7 +213,7 @@
 ;;;
 ;;; Base home packages
 ;;;
-(define-public %base-home-packages
+(define %base-home-packages
   (append
    (strings->packages
     "git" "curl" "vim" "make"
@@ -244,9 +245,3 @@
 
     ;; Editors
     "vscodium")))
-
-;;;
-;;; Base system packages
-;;;
-(define-public %base-system-packages
-  '())

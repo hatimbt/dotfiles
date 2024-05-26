@@ -60,7 +60,8 @@ hrl:
 	TARGET=${HOSTNAME}-home \
 			guix time-machine -C rde/channels-local-lock.scm -- \
 			home reconfigure \
-			--load-path=$(GLP) --cores=$(NPROCS) $(CONFIG_FILE)
+			--load-path=$(GLP) --cores=$(NPROCS) $(CONFIG_FILE) \
+			--allow-downgrades
 
 srl:
 	TARGET=${HOSTNAME}-system \

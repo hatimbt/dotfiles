@@ -96,8 +96,7 @@
    ;; Packages
    (feature-base-packages
     #:system-packages
-    (append tycho-system-packages
-            %base-system-packages)
+    (append tycho-system-packages)
     #:home-packages
     (append tycho-home-packages
             %base-home-packages))

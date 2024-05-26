@@ -24,8 +24,7 @@
     (match target
       ("tycho-home" tycho-he)
       ("tycho-system" tycho-os)
-      ("gnu-home" wsl-he)
       ("SSL440M-home" debes-he)
-      (_ tycho-he))))
+      ("gnu-home" wsl-he))))
 
 (dispatcher)
