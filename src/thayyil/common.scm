@@ -112,18 +112,32 @@
 (define-public %desktop-base-features
   (list
    (feature-desktop-services)
-   (feature-dwl-guile)
-   (feature-statusbar-dtao-guile)
-   (feature-swayidle)
-   (feature-swaylock)
-   (feature-batsignal)
 
    ;; Terminals
    (feature-foot)
 
    ;; Audio
    (feature-pipewire)
-   (feature-pulseaudio-control)))
+   (feature-pulseaudio-control)
+
+
+   ;; Sway
+   (feature-sway
+    #:xwayland? #t)
+   (feature-waybar)
+
+   (feature-sway-run-on-tty #:sway-tty-number 2)
+   (feature-sway-screenshot)
+   (feature-swaylock
+    #:swaylock (@ (gnu packages wm) swaylock-effects)
+    ;; The blur on lock screen is not privacy-friendly.
+    #:extra-config '((screenshots)
+                     (effect-blur . 7x5)
+                     (clock)))
+
+   (feature-swaynotificationcenter)
+   (feature-swayidle)
+   (feature-batsignal)))
 
 ;;;
 ;;; Emacs base features
