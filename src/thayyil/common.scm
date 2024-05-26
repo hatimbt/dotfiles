@@ -32,6 +32,7 @@
   #:use-module (thayyil features tree-sitter)
   #:use-module (thayyil features keyboard)
   #:use-module (thayyil features tmux)
+  #:use-module (thayyil features package-management)
 
   #:use-module (gnu services)
   #:use-module (gnu packages certs)
@@ -137,7 +138,9 @@
 
    (feature-swaynotificationcenter)
    (feature-swayidle)
-   (feature-batsignal)))
+   (feature-batsignal)
+
+   (feature-nix)))
 
 ;;;
 ;;; Emacs base features
