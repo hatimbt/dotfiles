@@ -70,17 +70,14 @@ srl:
 			--load-path=$(GLP) --cores=$(NPROCS) $(CONFIG_FILE)
 
 cp:
-	guix pull -C rde/channels-lock.scm
+	guix pull -C rde/channels-lock.scm --news
 
 cpl:
-	guix pull -C rde/channels-local-lock.scm
+	guix pull -C rde/channels-local-lock.scm --news
 
 culock:
 	guix time-machine -C rde/channels.scm -- \
 	describe -f channels > rde/channels-lock.scm
-
-clp:
-	guix pull -C rde/channels-local-lock.scm
 
 clulock:
 	guix time-machine -C rde/channels-local.scm -- \
