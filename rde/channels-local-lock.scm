@@ -3,7 +3,7 @@
         (url "https://git.savannah.gnu.org/git/guix.git")
         (branch "master")
         (commit
-          "28bc0e870b4d48b8e3e773382bb0e999df2e3611")
+          "4c39f6edebd2a3601c7b75adaf0426c72246b011")
         (introduction
           (make-channel-introduction
             "9edb3f66fd807b096b48283debdcddccfea34bad"
@@ -11,36 +11,23 @@
               "BBB0 2DDF 2CEA F6A8 0D1D  E643 A2A0 6DF2 A33A 54FA"))))
       (channel
         (name 'nonguix)
-        (url "file:///home/hatim/src/guile/nonguix")
+        (url "https://gitlab.com/nonguix/nonguix")
         (branch "master")
         (commit
-          "a4356defe7d4ee9b0ac6789d67f94d00714a9409"))
-      (channel
-        (name 'rde)
-        (url "file:///home/hatim/src/guile/rde")
-        (branch "master")
-        (commit
-          "3344ce422f1c3d6f3e43815bbca76992a0aa8e0a"))
-      (channel
-        (name 'home-service-dwl-guile)
-        (url "file:///home/hatim/src/guile/home-service-dwl-guile")
-        (branch "local")
-        (commit
-          "b242680651aff4a9c3b7f1e0ec8364d599b931c6"))
-      (channel
-        (name 'home-service-dtao-guile)
-        (url "file:///home/hatim/src/guile/home-service-dtao-guile")
-        (branch "local")
-        (commit
-          "dd0928d2012311f65b323e521a1e8b582ffdaec1"))
-      (channel
-        (name 'farg)
-        (url "https://github.com/engstrand-config/farg")
-        (branch "main")
-        (commit
-          "f84ffd7d65554a0c4b851ee80547fa8aa7142378")
+          "92f4921c6603e81693a01b0cd7c50977e0b92788")
         (introduction
           (make-channel-introduction
-            "f94df02065d8691880dd5414e5c5ad27388d450f"
+            "897c1a470da759236cc11798f4e0a5f7d4d59fbc"
             (openpgp-fingerprint
-              "C9BE B8A0 4458 FDDF 1268  1B39 029D 8EB7 7E18 D68C")))))
+              "2A39 3FFF 68F4 EF7A 3D29  12AF 6F51 20A0 22FB B2D5"))))
+      (channel
+        (name 'rde)
+        (url "https://git.sr.ht/~abcdw/rde")
+        (branch "master")
+        (commit
+          "e2e82e878973baee72b40b5b6b35d707f670fc58")
+        (introduction
+          (make-channel-introduction
+            "257cebd587b66e4d865b3537a9a88cccd7107c95"
+            (openpgp-fingerprint
+              "2841 9AC6 5038 7440 C7E9  2FFA 2208 D209 58C1 DEB0")))))

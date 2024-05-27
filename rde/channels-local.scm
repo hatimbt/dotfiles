@@ -14,20 +14,4 @@
       (channel
        (name 'rde)
        (url (string-append "file://" (getenv "HOME") "/src/guile/rde"))
-       (branch "master"))
-      (channel
-       (name 'home-service-dwl-guile)
-       (url (string-append "file://" (getenv "HOME") "/src/guile/home-service-dwl-guile"))
-       (branch "local"))
-      (channel
-       (name 'home-service-dtao-guile)
-       (url (string-append "file://" (getenv "HOME") "/src/guile/home-service-dtao-guile"))
-       (branch "local"))
-      (channel
-       (name 'farg)
-       (url "https://github.com/engstrand-config/farg")
-       (branch "main")
-       (introduction
-        (make-channel-introduction
-         "f94df02065d8691880dd5414e5c5ad27388d450f"
-         (openpgp-fingerprint "C9BE B8A0 4458 FDDF 1268 1B39 029D 8EB7 7E18 D68C")))))
+       (branch "master")))

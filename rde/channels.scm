@@ -25,31 +25,4 @@
    (make-channel-introduction
     "257cebd587b66e4d865b3537a9a88cccd7107c95"
     (openpgp-fingerprint
-     "2841 9AC6 5038 7440 C7E9  2FFA 2208 D209 58C1 DEB0"))))
- (channel
-  (name 'home-service-dwl-guile)
-  (url "https://github.com/engstrand-config/home-service-dwl-guile")
-  (branch "main")
-  (introduction
-   (make-channel-introduction
-    "314453a87634d67e914cfdf51d357638902dd9fe"
-    (openpgp-fingerprint
-     "C9BE B8A0 4458 FDDF 1268  1B39 029D 8EB7 7E18 D68C"))))
- (channel
-  (name 'home-service-dtao-guile)
-  (url "https://github.com/engstrand-config/home-service-dtao-guile")
-  (branch "main")
-  (introduction
-   (make-channel-introduction
-    "64d0b70c547095ddc840dd07424b9a46ccc2e64e"
-    (openpgp-fingerprint
-     "C9BE B8A0 4458 FDDF 1268  1B39 029D 8EB7 7E18 D68C"))))
- (channel
-  (name 'farg)
-  (url "https://github.com/engstrand-config/farg")
-  (branch "main")
-  (introduction
-   (make-channel-introduction
-    "f94df02065d8691880dd5414e5c5ad27388d450f"
-    (openpgp-fingerprint
-     "C9BE B8A0 4458 FDDF 1268 1B39 029D 8EB7 7E18 D68C")))))
+     "2841 9AC6 5038 7440 C7E9  2FFA 2208 D209 58C1 DEB0")))))
