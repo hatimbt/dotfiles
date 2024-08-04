@@ -1,9 +1,5 @@
 (define-module (thayyil features emacs)
   #:use-module (guix gexp)
-  #:use-module (dwl-guile home-service)
-  #:use-module (dwl-guile utils)
-  #:use-module (farg colors)
-  #:use-module (farg home-service)
   #:use-module (thayyil utils)
   #:use-module (gnu home services)
   #:use-module (rde home services emacs)
@@ -17,8 +13,7 @@
   #:use-module (rde features emacs-xyz)
   #:use-module (contrib features emacs-xyz)
   #:use-module (rde packages emacs)
-  #:export (
-            feature-emacs-thayyil-appearance))
+  #:export (feature-emacs-thayyil-appearance))
 
 (define* (make-emacs-feature base-name
                         #:key
@@ -34,9 +29,9 @@
 
 (define* (feature-emacs-thayyil-appearance)
   "Override default rde Emacs appearance."
-  (define emacs-f-name 'engstrand-test-appearance)
+  (define emacs-f-name 'thayyil-appearance)
 
-  (lambda (_ palette)
+  (lambda (_)
     (define (get-home-services config)
       (list
        (rde-elisp-configuration-service

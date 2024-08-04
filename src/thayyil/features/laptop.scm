@@ -7,13 +7,8 @@
   #:use-module (gnu home services)
   #:use-module (gnu services pm)
   #:use-module (gnu packages linux)
-  #:use-module (dwl-guile utils)
-  #:use-module (dwl-guile patches)
-  #:use-module (dwl-guile home-service)
-  #:use-module (dtao-guile home-service)
   #:use-module (thayyil utils)
-  #:export (
-            feature-laptop
+  #:export (feature-laptop
             feature-laptop-tlp
             feature-laptop-natural-scrolling
             feature-laptop-monitor-brightness
@@ -22,7 +17,7 @@
 (define* (feature-laptop)
   "Base laptop feature."
 
-  (feature
+ (feature
    (name 'laptop)
    (values `((laptop . #t)))))
 
@@ -47,63 +42,7 @@
    (name 'laptop-tlp)
    (system-services-getter get-system-services)))
 
-(define* (feature-laptop-natural-scrolling
-          #:key
-          (natural-scrolling? #t))
-  "Enable/disable natural scrolling in compositor."
-
-  (ensure-pred boolean? natural-scrolling?)
-
-  (define (get-home-services config)
-    (make-service-list
-     (when (get-value 'dwl-guile config)
-       (simple-service
-        'set-natural-scrolling-in-dwl-guile
-        home-dwl-guile-service-type
-        `((setq natural-scrolling? ,natural-scrolling?))))))
-
-  (feature
-   (name 'laptop-natural-scrolling)
-   (home-services-getter get-home-services)))
-
-(define* (feature-laptop-monitor-brightness
-          #:key
-          (step 10)
-          (decrease-brightness-key "<XF86MonBrightnessDown>")
-          (increase-brightness-key "<XF86MonBrightnessUp>")
-          (add-keybindings? #t))
-  "Install and configure brightnessctl for laptops"
-
-  (ensure-pred number? step)
-  (ensure-pred string? decrease-brightness-key)
-  (ensure-pred string? increase-brightness-key)
-  (ensure-pred boolean? add-keybindings?)
-
-  (define (get-home-services config)
-    (make-service-list
-     (simple-service
-      'add-brightnessctl-home-packages-to-profile
-      home-profile-service-type
-      (list brightnessctl))
-     (when (and add-keybindings?
-                (get-value 'dwl-guile config))
-       (let ((bin (file-append brightnessctl "/bin/brightnessctl"))
-             (change (string-append (number->string step) "%")))
-         (simple-service
-          'add-dwl-guile-brightness-keys
-          home-dwl-guile-service-type
-          `((set-keys ,decrease-brightness-key
-                      (lambda () (dwl:shcmd ,bin "s" ,(string-append change "-")))
-                      ,increase-brightness-key
-                      (lambda () (dwl:shcmd ,bin "s" ,(string-append "+" change))))))))))
-
-  (feature
-   (name 'laptop-monitor-brightness)
-   (home-services-getter get-home-services)))
-
 (define %thayyil-laptop-base-features
   (list
    (feature-laptop)
-   (feature-laptop-tlp)
-   (feature-laptop-natural-scrolling)
-   (feature-laptop-monitor-brightness)))
+   (feature-laptop-tlp)))

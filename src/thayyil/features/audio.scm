@@ -7,10 +7,10 @@
   #:use-module (gnu packages pulseaudio)
   #:use-module (thayyil utils)
   #:use-module (gnu home services)
-  #:use-module (dwl-guile home-service)
   #:export (feature-pulseaudio-control))
 
-
+;; TODO Need to add keybindings for volume control. Used to have
+;; dwl-guile bindings. Find alternative solutions for sway.
 (define* (feature-pulseaudio-control
           #:key
           (step 5)
@@ -18,7 +18,7 @@
           (decrease-volume-key "<XF86AudioLowerVolume>")
           (mute-volume-key "<XF86AudioMute>")
           (add-keybindings? #t))
-  "Install and configure pamixer and add wm keybindings for Pulseaudio control."
+  "Install and configure pamixer."
 
   (ensure-pred number? step)
   (ensure-pred string? increase-volume-key)
@@ -33,23 +33,7 @@
      (simple-service
       'add-pulseaudio-control-home-packages-to-profile
       home-profile-service-type
-      (list pamixer))
-     (when (and add-keybindings? (get-value 'dwl-guile config))
-       (simple-service
-        'add-pamixer-dwl-keybindingspulseaudio
-        home-dwl-guile-service-type
-        `((set-keys ,increase-volume-key
-                    (lambda ()
-                      (dwl:shcmd ,command
-                                 "--unmute"
-                                 "--increase" ,(number->string step)))
-                    ,decrease-volume-key
-                    (lambda ()
-                      (dwl:shcmd ,command
-                                 "--unmute"
-                                 "--decrease" ,(number->string step)))
-                    ,mute-volume-key
-                    (lambda () (dwl:shcmd ,command "--toggle-mute"))))))))
+      (list pamixer))))
 
   (feature
    (name 'pulseaudio-control)
