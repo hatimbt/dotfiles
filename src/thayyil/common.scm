@@ -3,13 +3,15 @@
   #:use-module (rde features base)
   #:use-module (rde features ssh)
   #:use-module (rde features keyboard)
-  #:use-module (rde features shells)
   #:use-module (rde features linux)
+  #:use-module (rde features shells)
   #:use-module (rde features shellutils)
+  #:use-module (rde features fontutils)
   #:use-module (rde features wm)
   #:use-module (rde features emacs)
   #:use-module (rde features emacs-xyz)
   #:use-module (contrib features emacs-xyz)
+  #:use-module (contrib features javascript)
   #:use-module (rde features tmux)
 
   ;; Fonts
@@ -20,10 +22,7 @@
 
   #:use-module (thayyil features networking)
 
-  #:use-module (thayyil features shells)
   #:use-module (thayyil features terminals)
-  #:use-module (thayyil features dwl-guile)
-  #:use-module (thayyil features dtao-guile)
   #:use-module (thayyil features laptop)
   #:use-module (thayyil features audio)
   #:use-module (thayyil packages vim)
@@ -49,8 +48,7 @@
   #:use-module (nongnu packages linux)
   #:use-module (nongnu system linux-initrd)
 
-  #:use-module (guix gexp)
-  #:export(%base-home-packages))
+  #:use-module (guix gexp))
 
 ;;;
 ;;; Base features
@@ -114,6 +112,8 @@
   (list
    (feature-desktop-services)
 
+   (feature-fonts)
+
    ;; Terminals
    (feature-foot)
 
@@ -155,7 +155,7 @@
    ;; UI
    (feature-emacs-appearance)
    (feature-emacs-modus-themes)
-   (feature-emacs-circadian)
+   ;;(feature-emacs-circadian)
    (feature-emacs-all-the-icons)
 
    ;; Generic
@@ -178,6 +178,7 @@
    (feature-emacs-git)
    (feature-emacs-geiser)
    (feature-emacs-guix)
+   (feature-javascript)
 
    ;; Research
    (feature-emacs-org)
@@ -226,11 +227,10 @@
    (feature-rust-dev)
    (feature-neovim-rust)))
 
-
 ;;;
 ;;; Base home packages
 ;;;
-(define %base-home-packages
+(define %base-packages
   (append
    (strings->packages
     "git" "curl" "vim" "make"
@@ -242,7 +242,7 @@
     "bind"
 
     ;; Desktop
-    "bemenu" "localed" "wl-clipboard" "wl-clipboard-x11" "xcape"
+    "localed" "wl-clipboard" "wl-clipboard-x11" "xcape"
 
     ;; Terminals
     "st"
