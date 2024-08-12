@@ -3,7 +3,6 @@
   #:use-module (rde features terminals)
   #:use-module (rde features shells)
   #:use-module (rde features shellutils)
-  #:use-module (rde features version-control)
   #:use-module (rde features ssh)
   #:use-module (rde features tmux)
   #:use-module (thayyil features tmux)
@@ -22,9 +21,6 @@
    (feature-bash)
 
    (feature-direnv)
-   ;; TODO Provide a correct `git-sign-key` or a `gpg-primary-key`
-   (feature-git
-    #:sign-commits? #f)
    (feature-ssh)
 
    (feature-tmux)
