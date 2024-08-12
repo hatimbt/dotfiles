@@ -2,6 +2,7 @@
   #:use-module (thayyil features neovim)
   #:use-module (thayyil features tree-sitter)
   #:use-module (thayyil features rust)
+  #:use-module (thayyil features package-management)
   #:use-module (rde features virtualization)
   #:use-module (rde features containers))
 
@@ -27,3 +28,7 @@
   (list
    (feature-podman)
    (feature-qemu)))
+
+(define-public thayyil-nix-set
+  (list
+   (feature-nix)))
