@@ -37,6 +37,10 @@ host/home/build: guix
 	RDE_TARGET=${HOSTNAME}-home ${GUIX} home \
 	build ${CONFIGS}
 
+host/home/container: guix
+	RDE_TARGET=${HOSTNAME}-home ${GUIX} home \
+	container ${CONFIGS}
+
 host/home/reconfigure: guix
 	RDE_TARGET=${HOSTNAME}-home ${GUIX} home \
 	reconfigure ${CONFIGS}
