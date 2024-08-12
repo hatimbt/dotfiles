@@ -1,12 +1,15 @@
 (define-module (thayyil features package-management)
-  #:use-module (gnu home services)
-  #:use-module (gnu home-services shells)
   #:use-module (gnu services)
+
+  #:use-module (gnu home services)
+
+  ;; For some reason (gnu home services shells) is not being recognised
+  #:use-module (rde home services shells)
+
   #:use-module (gnu services nix)
-  #:use-module (gnu packages base)
-  #:use-module (gnu packages package-management)
-  #:use-module (rde features predicates)
+
   #:use-module (rde features)
+
   #:export (feature-nix))
 
 (define* (feature-nix)
