@@ -40,7 +40,17 @@
 
    thayyil-emacs-set
    thayyil-emacs-comms-set
-   thayyil-emacs-research-set))
+   thayyil-emacs-research-set
+
+   thayyil-neovim-set
+   thayyil-virtualisation-set
+
+   ;; Currently rust toolchain is installed to home-profile. In the future,
+   ;; this should be setup per-project.
+   thayyil-devel-rust-set
+
+   ;; Has to come after (feature-sway)
+   thayyil-nix-set))
 
 ;; Include substitutes for Guix and Non-Guix
 (define general-features-with-substitutes
