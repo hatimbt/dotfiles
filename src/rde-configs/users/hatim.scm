@@ -14,6 +14,7 @@
   #:use-module (rde features password-utils)
   #:use-module (rde features xdg)
   #:use-module (rde features libreoffice)
+  #:use-module (rde features version-control)
 
   #:use-module (rde features predicates)
 
@@ -173,6 +174,13 @@
      ;; (xwayland disable)
      (bindsym $mod+Shift+Return exec emacs))))
 
+(define xdg-config-files-service
+  (simple-service
+   'custom-xdg-dotfiles
+   home-xdg-configuration-files-service-type
+   `(("tmux", (local-file "../../files/tmux" #:recursive? #t))
+     ("nvim", (local-file "../../files/nvim" #:recursive? #t)))))
+
 ;; This needs to before where it is used.
 (define (feature-additional-services)
   (feature-custom-services
@@ -181,7 +189,74 @@
    (list
     emacs-extra-packages-service
     home-extra-packages-service
+    xdg-config-files-service
     sway-extra-config-service)))
+
+(define git-extra-config
+  (list
+   `(init ((default-branch . "main")))
+   ;;`(merge ((tool . "vimdiff")))
+   `(fetch ((prune . #t)))
+   `(push ((default . "current")))
+   ;; Use --no-autostash to disable this
+   `(rebase ((autoStash . #t)))
+   `(filter "lfs"
+            ((required . #t)
+             (clean . "git-lfs clean -- %f")
+             (smudge . "git-lfs smudge -- %f")
+             (process . "git-lfs filter-process")))
+   `(alias
+     ( ;; Logs
+      (l . "log --decorate --graph --oneline -20")
+      (ll . "log --decorate --graph --oneline")
+      (lr . "log --reverse --decorate --oneline")
+      (rl . "reflog -20")
+      (rll . "reflog")
+      (la . "log --all --decorate --graph --oneline")
+      (in . "log --all --decorate --graph --oneline origin/master ^master")
+      (out . "log --all --decorate --graph --oneline master ^origin/master")
+
+      ;; Diffs
+      (d . "diff")
+      (dc . "diff --word-diff --color-words")
+
+      ;; Staging/Unstaging files
+      ;; Staging/Unstaging files
+      (a . "add")
+      (aa . "add --all")
+      (ap . "add -p")
+      (r . "reset")
+      (rp . "reset -p")
+      (rh . "reset --hard")
+      (s . "status -sb")
+      (unstage . "reset")
+      (undo . "revert")
+
+      ;; Commit
+      (c . "commit --verbose")
+      (ca . "commit --amend --verbose")
+      (amend . "commit --amend --verbose")
+
+      ;; Branches
+      (b . "branch")
+      (co . "checkout")
+      (cob . "checkout -b")
+      (cp . "checkout -p") ;; choose hunks from diff between index and working copy
+
+      ;; Commit Merges
+      (m . "merge")
+      (mf . "merge --ff-only")
+      (mn . "merge --no-ff")
+
+      ;; Commit Rebase
+      (rb . "rebase")
+      (rba . "rebase --abort")
+      (rbc . "rebase --continue")
+      (rbi . "rebase -i")
+
+      ;; Remote management
+      (ps . "push")
+      (pl . "pull")))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -225,5 +300,9 @@
       (desktop "$HOME")
       (publicshare "$HOME")
       (templates "$HOME")))
+
+    (feature-git
+     #:sign-commits? #f
+     #:extra-config git-extra-config)
 
     (feature-libreoffice))))
