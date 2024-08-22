@@ -5,16 +5,19 @@
   #:use-module (thayyil presets desktop)
   #:use-module (thayyil presets emacs)
   #:use-module (thayyil presets devel)
+  #:use-module (thayyil presets mail)
 
   ;; Additional user features
   #:use-module (rde features)
   #:use-module (rde features base)
   #:use-module (rde features keyboard)
+  #:use-module (rde features gnupg)
   #:use-module (rde features security-token)
   #:use-module (rde features password-utils)
   #:use-module (rde features xdg)
   #:use-module (rde features libreoffice)
   #:use-module (rde features version-control)
+  #:use-module (rde features mail)
 
   #:use-module (rde features predicates)
 
@@ -41,6 +44,7 @@
    thayyil-emacs-set
    thayyil-emacs-comms-set
    thayyil-emacs-research-set
+   thayyil-email-set
 
    thayyil-neovim-set
    thayyil-virtualisation-set
@@ -288,8 +292,27 @@
      #:user-groups (list "wheel" "audio" "video"
                          "input" "lp"))
 
+    (feature-gnupg
+     #:gpg-primary-key "FC1E295A31A0525CC7EE64C05878E5FE49C010EA")
+
     (feature-security-token)
-    ;;(feature-password-store)
+    (feature-password-store)
+
+    (feature-mail-settings
+     #:mail-directory-fn (const "/home/hatim/mail")
+     #:mail-accounts (list
+                      (mail-account
+                       (id 'gmail)
+                       (type 'gmail)
+                       (fqda "hatimbt@gmail.com")
+                       (pass-cmd "pass show mail/gmail"))
+                      (mail-account
+                       (id 'personal)
+                       (type 'outlook)
+                       (fqda "hatim@thayyil.net")
+                       (pass-cmd "pass show mail/thayyil"))))
+
+    (feature-notmuch)
 
     ;; Keyboard layout
     (feature-keyboard
