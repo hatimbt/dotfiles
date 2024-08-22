@@ -17,21 +17,22 @@ ROOT_MOUNT_POINT=/mnt
 
 VERSION=latest
 
-repl: ares-rs
+repl: ares
 
 grepl:
 	${GUIX} repl
 
-ares-rs:
+ares:
 	${GUIX} shell guile-next guile-ares-rs \
 	-e '(@ (rde packages package-management) guix-from-channels-lock)' \
 	-- guile \
-	-L ../src \
-	-L ./src \
-	-L /data/abcdw/work/abcdw/guile-ares-rs/src \
+	-L ~/src/dotfiles/src \
+	-L ~/src/guile/rde/src \
+	-L ~/src/guile/nonguix \
+	-L ~/src/guile/guile-ares-rs/src \
 	-c \
 "(begin (use-modules (guix gexp)) #;(load gexp reader macro globally) \
-((@ (nrepl server) run-nrepl-server) #:port 7888))"
+((@ (ares server) run-nrepl-server) #:port 7888))"
 
 host/home/build: guix
 	RDE_TARGET=${HOSTNAME}-home ${GUIX} home \
