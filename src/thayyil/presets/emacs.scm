@@ -54,7 +54,11 @@
 (define-public thayyil-emacs-research-set
   (list
    ;; General Org
-   (feature-emacs-org)
+   (feature-emacs-org
+    #:org-directory "~/org"
+    #:org-capture-templates
+    `(("t" "Todo" entry (file+headline "todo.org" "Tasks")
+           "* TODO %?\nSCHEDULED: %t\n")))
    (feature-emacs-org-agenda
     #:org-agenda-files (list "~/org/todo.org"))
 
