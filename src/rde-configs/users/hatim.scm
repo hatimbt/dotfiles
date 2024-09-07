@@ -108,6 +108,8 @@
      "thunar" "fd"
      ;; "glib:bin"
 
+     "beancount"
+
      "ffmpeg"))))
 
 (define emacs-extra-packages-service
@@ -176,6 +178,8 @@
        ;; "emacs-consult-dir"
        "emacs-kind-icon"
        "emacs-nginx-mode" "emacs-yaml-mode"
+
+       "emacs-beancount"
 
        "emacs-arei"
        "emacs-multitran"
