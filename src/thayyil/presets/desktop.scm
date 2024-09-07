@@ -3,7 +3,8 @@
   #:use-module (rde features gtk)
   #:use-module (rde features wm)
   #:use-module (rde features emacs-xyz)
-  #:use-module (rde features web-browsers))
+  #:use-module (rde features web-browsers)
+  #:use-module (rde features finance))
 
 (define-public thayyil-desktop-set
   (list
@@ -28,4 +29,5 @@
    (feature-batsignal)
 
    (feature-librewolf)
-   (feature-ungoogled-chromium)))
+   (feature-ungoogled-chromium)
+   (feature-ledger)))
