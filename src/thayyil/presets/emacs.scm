@@ -1,7 +1,6 @@
 (define-module (thayyil presets emacs)
   #:use-module (rde features emacs)
-  #:use-module (rde features emacs-xyz)
-  #:use-module (contrib features emacs-xyz))
+  #:use-module (rde features emacs-xyz))
 
 (define-public thayyil-emacs-set
   (list
@@ -14,11 +13,6 @@
    (feature-emacs-eshell)
    (feature-emacs-tramp)
    (feature-emacs-help)
-
-   ;; Currently from (contrib features emacs-xyz).
-   ;; TODO Implemene my own feature with better interop with rde emacs features
-   ;; This version breaks some keybindings for geiser.
-   (feature-emacs-evil)
 
    ;; UI
    (feature-emacs-appearance)
