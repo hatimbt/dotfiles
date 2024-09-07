@@ -55,7 +55,8 @@
   (list
    ;; General Org
    (feature-emacs-org)
-   (feature-emacs-org-agenda)
+   (feature-emacs-org-agenda
+    #:org-agenda-files (list "~/org/todo.org"))
 
    ;; Writing
    (feature-emacs-spelling
@@ -67,11 +68,11 @@
 
    ;; PKM
    (feature-emacs-denote
-    #:denote-directory "~/library/notes")
+    #:denote-directory "~/notes")
    (feature-emacs-citation
-    #:global-bibliography (list "~/library/references.bib"))
+    #:global-bibliography (list "~/library/general.bib"))
 
    (feature-emacs-elfeed
-    #:elfeed-org-files (list "~/documents/rss.org"))
+    #:elfeed-org-files (list "~/feeds/rss.org"))
 
    (feature-emacs-pdf-tools)))
