@@ -52,7 +52,7 @@
     #:org-directory "~/org"
     #:org-capture-templates
     `(("t" "Todo" entry (file+headline "todo.org" "Tasks")
-           "* TODO %?\nSCHEDULED: %t\n")))
+           "* TODO %?\n")))
    (feature-emacs-org-agenda
     #:org-agenda-files (list "~/org/todo.org"))
 
