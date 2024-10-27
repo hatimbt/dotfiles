@@ -84,13 +84,10 @@
 
      ;; Dev Utils
      "binutils" "gdb" "just" "flatpak"
-     "vscodium"
+     ;;"vscodium"
 
      ;; EPUB
      "calibre"
-
-     ;; Audiobook
-     "cozy"
 
      ;; Audiocontrol
      "pavucontrol"
