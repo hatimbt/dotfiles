@@ -168,6 +168,7 @@
        "emacs-org-wild-notifier"
 
        "emacs-haskell-mode"
+       "emacs-racket-mode"
        "emacs-rainbow-mode"
 
        "emacs-hl-todo"
