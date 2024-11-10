@@ -1,30 +1,43 @@
 (define-module (rde-configs users hatim)
-  ;; General feature sets
-  #:use-module (thayyil presets base)
-  #:use-module (thayyil presets cli)
-  #:use-module (thayyil presets desktop)
-  #:use-module (thayyil presets emacs)
-  #:use-module (thayyil presets devel)
-  #:use-module (thayyil presets mail)
-
   ;; Additional user features
   #:use-module (rde features)
   #:use-module (rde features base)
-  #:use-module (rde features keyboard)
+  #:use-module (rde features containers)
+  #:use-module (rde features documentation)
+  #:use-module (rde features emacs)
+  #:use-module (rde features emacs-xyz)
+  #:use-module (rde features finance)
+  #:use-module (rde features fontutils)
   #:use-module (rde features gnupg)
-  #:use-module (rde features security-token)
-  #:use-module (rde features password-utils)
-  #:use-module (rde features xdg)
+  #:use-module (rde features gtk)
+  #:use-module (rde features guile)
+  #:use-module (rde features keyboard)
   #:use-module (rde features libreoffice)
-  #:use-module (rde features version-control)
+  #:use-module (rde features linux)
   #:use-module (rde features mail)
-
+  #:use-module (rde features networking)
+  #:use-module (rde features password-utils)
   #:use-module (rde features predicates)
+  #:use-module (rde features security-token)
+  #:use-module (rde features shells)
+  #:use-module (rde features shellutils)
+  #:use-module (rde features ssh)
+  #:use-module (rde features system)
+  #:use-module (rde features terminals)
+  #:use-module (rde features tmux)
+  #:use-module (rde features version-control)
+  #:use-module (rde features virtualization)
+  #:use-module (rde features web-browsers)
+  #:use-module (rde features wm)
+  #:use-module (rde features xdg)
+  #:use-module (thayyil features neovim)
+  #:use-module (thayyil features package-management)
+  #:use-module (thayyil features rust)
+  #:use-module (thayyil features tmux)
+  #:use-module (thayyil features tree-sitter)
 
   ;;strings->packages
   #:use-module (rde packages)
-
-  #:use-module (rde features system)
 
   ;; For the service extensions
   #:use-module (gnu services)
@@ -33,6 +46,194 @@
   #:use-module (rde home services wm)
 
   #:use-module (guix gexp))
+
+;;; Basic set of features
+(define thayyil-base-set
+  (list
+   (feature-base-packages)
+   (feature-desktop-services)
+
+   ;; iwd + NetworkManager
+   (feature-networking)
+   (feature-backlight)
+   (feature-pipewire)))
+
+(define thayyil-cli-set
+  (list
+   (feature-manpages)
+
+   ;; emacs-vterm and shell
+   (feature-vterm)
+   ;; From (thayyil features terminals) to have modus-vivendi as default.
+   ((@ (thayyil features terminals) feature-foot))
+
+   (feature-zsh)
+   (feature-bash)
+
+   (feature-direnv)
+   (feature-ssh)
+
+   (feature-tmux)
+   (feature-tmux-catppuccin)
+
+   (feature-guile)))
+
+(define-public thayyil-desktop-set
+  (list
+   (feature-fonts)
+   (feature-gtk3)
+
+   (feature-sway
+    #:xwayland? #t)
+   (feature-emacs-power-menu)
+   (feature-sway-run-on-tty
+    #:sway-tty-number 2)
+   (feature-sway-screenshot)
+   (feature-swaynotificationcenter)
+   (feature-waybar)
+   (feature-swayidle)
+   (feature-swaylock
+    #:swaylock (@ (gnu packages wm) swaylock-effects)
+    ;; The blur on lock screen is not privacy-friendly.
+    #:extra-config '((screenshots)
+                     (effect-blur . 7x5)
+                     (clock)))
+   (feature-batsignal)
+
+   (feature-librewolf)
+   (feature-ungoogled-chromium)
+   (feature-ledger)))
+
+(define-public thayyil-emacs-set
+  (list
+   (feature-emacs
+    #:default-application-launcher? #t)
+
+   ;; General
+   (feature-emacs-dired)
+   (feature-emacs-all-the-icons)
+   (feature-emacs-eshell)
+   (feature-emacs-tramp)
+   (feature-emacs-help)
+
+   ;; UI
+   (feature-emacs-appearance)
+   (feature-emacs-modus-themes)
+   (feature-emacs-monocle)
+   (feature-emacs-keycast
+    #:turn-on? #t)
+   (feature-emacs-time)
+
+   ;; Completion
+   (feature-emacs-completion
+    #:mini-frame? #f)
+   (feature-emacs-corfu)
+   (feature-emacs-vertico)
+   (feature-emacs-which-key)
+
+   ;; Development
+   (feature-emacs-project)
+   (feature-emacs-eglot)
+   (feature-emacs-smartparens
+    #:show-smartparens? #t)
+   (feature-emacs-git)
+   (feature-emacs-geiser)
+   (feature-emacs-guix)))
+
+(define-public thayyil-emacs-comms-set
+  (list
+   (feature-emacs-telega)
+   (feature-emacs-ebdb
+    #:ebdb-sources (list "~/documents/contacts")
+    #:ebdb-popup-size 0.2)))
+
+(define-public thayyil-emacs-research-set
+  (list
+   ;; General Org
+   (feature-emacs-org
+    #:org-directory "~/org"
+    #:org-capture-templates
+    `(("t" "Todo" entry (file+headline "todo.org" "Tasks")
+           "* TODO %?\n")))
+   (feature-emacs-org-agenda
+    #:org-agenda-files (list "~/org/todo.org"))
+
+   ;; Writing
+   (feature-emacs-spelling
+    #:spelling-program (@ (gnu packages hunspell) hunspell)
+    #:spelling-dictionaries
+    (list
+     (@ (gnu packages hunspell) hunspell-dict-en)
+     (@ (rde packages aspell) hunspell-dict-ru)))
+
+   ;; PKM
+   (feature-emacs-denote
+    #:denote-directory "~/notes")
+   (feature-emacs-citation
+    #:global-bibliography (list "~/library/general.bib"))
+
+   (feature-emacs-elfeed
+    #:elfeed-org-files (list "~/feeds/rss.org"))
+
+   (feature-emacs-pdf-tools)))
+
+(define-public thayyil-neovim-set
+  (list
+   (feature-neovim)
+
+   (feature-neovim-neo-tree)
+   (feature-neovim-telescope)
+   (feature-neovim-cmp)
+   (feature-neovim-cmp-luasnip)
+   (feature-neovim-friendly-snippets)
+
+   (feature-tree-sitter)))
+
+(define-public thayyil-devel-rust-set
+  (list
+   (feature-rust)
+   (feature-rust-dev)
+   (feature-neovim-rust)))
+
+(define-public thayyil-virtualisation-set
+  (list
+   (feature-podman)
+   (feature-qemu)))
+
+(define-public thayyil-nix-set
+  (list
+   (feature-nix)))
+
+;;; EMAIL
+(define msmtp-provider-settings
+  (append
+   `((outlook . ((host . "smtp-mail.outlook.com")
+                 (port . 587))))
+   %default-msmtp-provider-settings))
+
+(define outlook-folder-mapping
+  '(("inbox"   . "INBOX")
+    ("sent"    . "[Outlook]/Sent Items")
+    ("drafts"  . "[Outlook]/Drafts")
+    ("archive" . "[Outlook]/All Mail")
+    ("trash"   . "[Outlook]/Trash")
+    ("spam"    . "[Outlook]/Spam")))
+
+(define outlook-isync-settings
+  (generate-isync-serializer "outlook.office365.com" outlook-folder-mapping))
+
+(define isync-serializers
+  (append
+   `((outlook . ,outlook-isync-settings))
+   %default-isync-serializers))
+
+(define-public thayyil-email-set
+  (list
+   (feature-isync
+    #:isync-serializers isync-serializers)
+   (feature-l2md)
+   (feature-msmtp
+    #:msmtp-provider-settings msmtp-provider-settings)))
 
 ;; General features
 (define general-features
@@ -105,7 +306,8 @@
      "thunar" "fd"
      ;; "glib:bin"
 
-     "beancount"
+     ;; Going to maintain a local copy of beancount.
+     ;;"beancount"
 
      "ffmpeg"))))
 

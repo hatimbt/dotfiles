@@ -1,4 +1,5 @@
 (define-module (rde-configs hosts tycho)
+  #:use-module (rde features)
   #:use-module (rde features base)
   #:use-module (rde features system)
   #:use-module (rde features wm)
@@ -13,7 +14,10 @@
   #:use-module (gnu bootloader grub)
 
   #:use-module (nongnu packages linux)
-  #:use-module (nongnu system linux-initrd))
+  #:use-module (nongnu system linux-initrd)
+
+  #:use-module (ice-9 match)
+  #:use-module (rde-configs users hatim))
 
 ;;;
 ;;; LUKS Encryption mapped storage devices
@@ -79,3 +83,24 @@
    ;; Laptop
    (feature-laptop)
    (feature-laptop-tlp)))
+
+(define-public tycho-config
+  (rde-config
+   (features
+    (append
+     %tycho-features
+     %hatim-features))))
+
+(define-public tycho-os
+  (rde-config-operating-system tycho-config))
+
+(define-public tycho-he
+  (rde-config-home-environment tycho-config))
+
+(define (dispatcher)
+  (let ((rde-target (getenv "RDE")))
+    (match rde-target
+      ("home" tycho-he)
+      ("system" tycho-os))))
+
+(dispatcher)
