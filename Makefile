@@ -54,6 +54,10 @@ host/system/reconfigure: guix
 	RDE_TARGET=${HOSTNAME}-system ${GUIX} system \
 	reconfigure ${CONFIGS}
 
+host/system/vm: guix
+	RDE_TARGET=${HOSTNAME}-system ${GUIX} system \
+	vm ${CONFIGS}
+
 cow-store:
 	sudo herd start cow-store ${ROOT_MOUNT_POINT}
 
